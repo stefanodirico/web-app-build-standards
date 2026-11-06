@@ -74,7 +74,7 @@ Rules: enforce on the server or database, never only in the UI. Anything not lis
 
 ## Things to keep safe [Saved]
 
-From the @tinchosms reel "Who's gonna tell Vibecoders about...", a scrolling list of engineering topics. Only the safety-related topics are here, grouped by me, with names as shown on screen. The reel gives names only, so "What safe looks like" is [Practice]. In a security review, mark each row PASS, FAIL, N/A or UNSURE.
+From the @tinchosms reel "Who's gonna tell Vibecoders about...", a scrolling list of engineering topics. Only the safety-related topics are here, grouped by me, with names as shown on screen. The full list is in [engineering-topics.md](engineering-topics.md). The reel gives names only, so "What safe looks like" is [Practice]. In a security review, mark each row PASS, FAIL, N/A or UNSURE.
 
 | Area | Topics from the reel | What safe looks like |
 |---|---|---|

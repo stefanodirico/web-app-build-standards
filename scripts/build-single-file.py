@@ -4,7 +4,7 @@ import re, sys
 root = sys.argv[1] if len(sys.argv) > 1 else "."
 out = sys.argv[2] if len(sys.argv) > 2 else "exports"
 order = ["ux-audit", "design-and-craft", "motion-and-faux-ui", "security", "legal-and-compliance",
-         "launch-checklist", "app-stores", "feature-ideas", "companion-skills", "sources"]
+         "launch-checklist", "app-stores", "feature-ideas", "engineering-topics", "companion-skills", "sources"]
 titles = {}
 for n in order:
     first = open(f"{root}/references/{n}.md").readline().strip()

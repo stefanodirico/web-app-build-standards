@@ -36,6 +36,7 @@ Apply this to every website, app or coding task. Read only the references the ta
 | Setting up staging or preview deployments, or an app that keeps breaking in production | [launch-checklist.md](references/launch-checklist.md), staging and preview environments |
 | Animation, transitions or a product demo | [motion-and-faux-ui.md](references/motion-and-faux-ui.md) |
 | "What features could we add?" | [feature-ideas.md](references/feature-ideas.md) |
+| "What might we be missing?" or "what should I learn next?" | [engineering-topics.md](references/engineering-topics.md) |
 | Needs more depth or tooling | [companion-skills.md](references/companion-skills.md) |
 | Checking where a rule came from | [sources.md](references/sources.md) |
 
