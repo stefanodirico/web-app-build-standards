@@ -28,6 +28,7 @@ Apply this to every website, app or coding task. Read only the sections the task
 | Security review or "harden this" | the "Security" section |
 | Launching, or "is it ready?" | the "Launch checklist" section, the "Legal and compliance (UK, EU, Spain)" section, and the "App stores (Apple and Google)" section for native apps |
 | Buying or setting up a domain or email sending | the "Launch checklist" section, domain setup |
+| Building a website, or checking whether one gives away that it was vibe-coded | the "Launch checklist" section, vibe-coded giveaways |
 | Setting up staging or preview deployments, or an app that keeps breaking in production | the "Launch checklist" section, staging and preview environments |
 | Animation, transitions or a product demo | the "Motion and faux UI" section |
 | "What features could we add?" | the "Feature ideas (optional)" section |
@@ -767,6 +768,33 @@ Standard to pick, from a screenshot Stefano saved: WCAG AA (the default), WCAG A
 - [ ] No exposed source maps
 - [ ] No massive JS bundles
 
+### Vibe-coded giveaways to avoid and fix [Saved]
+
+From a screenshot of a reel, "20 (hidden) vibecoded website giveaways" (creator not visible). Avoid these while building, and fix any you find on an existing site. The giveaway names are as shown on screen, and the fixes are [Practice]. ⚠️ Items 4, 13, 16 and 20 were cut off or unclear in the screenshot, so the wording in brackets or the fix is a best reading.
+
+| # | Giveaway | Fix |
+|---|---|---|
+| 1 | vercel.app url | Move to a real domain (see domain setup below) |
+| 2 | viewsource empty | Pre-render or server-render the main content so it is in the page's HTML |
+| 3 | no 404 page | Add a custom 404 page with a route home, and return a real 404 status |
+| 4 | vite + react browser [tab title] | Replace the template's default tab title and favicon ⚠️ |
+| 5 | same page titles | Give each page its own specific title |
+| 6 | no meta desc | Write a meta description for each page |
+| 7 | no og:image | Add an Open Graph image and check the social preview |
+| 8 | no structured data | Add JSON-LD where it fits, and make it match what the page shows |
+| 9 | multiple H1's | Use one H1 per page |
+| 10 | no H1's | Add one H1 that says what the page is |
+| 11 | no canonical tag | Add a canonical URL to each page, using the real domain |
+| 12 | no llms.txt | Optional: add one if you want a summary for AI tools. ⚠️ It is a proposed convention, not an agreed standard, and its benefit is unproven as far as I know |
+| 13 | AI blocked robots.t[xt] | Check `robots.txt` and any host or CDN bot settings, then allow or block AI crawlers on purpose ⚠️ |
+| 14 | no favicon | Add a custom favicon |
+| 15 | no sitemap.xml | Publish one and submit it in Google Search Console |
+| 16 | no lang attribut[e] | Set the page language, such as `<html lang="en-GB">` ⚠️ |
+| 17 | missing alt text | Add alt text to meaningful images, and empty alt text to decorative ones |
+| 18 | source maps | Don't expose production source maps publicly |
+| 19 | console errors | Fix them, and check the console on every main page |
+| 20 | massive JS bundl[e] | Split code by route and remove unused dependencies. The screenshot shows no target size ⚠️ |
+
 ### Staging and preview environments [Saved]
 
 From the @paigethepm reel. If a vibe-coded app keeps breaking, ask whether you are "testing in prod": pushing code live to everyone and testing it there.
@@ -799,6 +827,7 @@ Add for each sending subdomain [Practice]: SPF, DKIM and DMARC records from the 
 - [ ] A real browser check confirms no non-essential tracker fires before consent.
 - [ ] Automated accessibility scan and manual keyboard and screen reader test completed. Automated tools alone are not enough.
 - [ ] The latest changes were tested on staging or a preview before going live.
+- [ ] Every vibe-coded giveaway has been fixed, marked N/A or kept on purpose, with the reason noted.
 - [ ] All ⚠️ items relevant to this project have been verified.
 - [ ] Any remaining gaps have been reported plainly.
 
@@ -877,7 +906,7 @@ DESIGN.md is a plain markdown design system file (colours, type, spacing, compon
 ## Sources
 
 ### Stefano's saved material
-- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen; 20 animation rules, from a screenshot), @paigethepm (staging environments and preview branches), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
+- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen; 20 animation rules, from a screenshot), @paigethepm (staging environments and preview branches), and screenshots of "20 cool features Claude can add to your website in one afternoon" and "20 (hidden) vibecoded website giveaways" (creators not visible)
 - UX audit prompt (132 items), saved as a text file
 - Website and app build standards (UK and EU), version 3 November 2026
 - Accessibility standard options, from a screenshot (September 2026)
