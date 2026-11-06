@@ -1,7 +1,7 @@
 # Sources
 
 ## Stefano's saved material
-- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
+- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen; 20 animation rules, from a screenshot), @paigethepm (staging environments and preview branches), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
 - UX audit prompt (132 items), saved as a text file
 - Website and app build standards (UK and EU), version 3 November 2026
 - Accessibility standard options, from a screenshot (September 2026)

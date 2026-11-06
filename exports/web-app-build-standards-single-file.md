@@ -28,6 +28,7 @@ Apply this to every website, app or coding task. Read only the sections the task
 | Security review or "harden this" | the "Security" section |
 | Launching, or "is it ready?" | the "Launch checklist" section, the "Legal and compliance (UK, EU, Spain)" section, and the "App stores (Apple and Google)" section for native apps |
 | Buying or setting up a domain or email sending | the "Launch checklist" section, domain setup |
+| Setting up staging or preview deployments, or an app that keeps breaking in production | the "Launch checklist" section, staging and preview environments |
 | Animation, transitions or a product demo | the "Motion and faux UI" section |
 | "What features could we add?" | the "Feature ideas (optional)" section |
 | Needs more depth or tooling | the "Companion skills and design references" section |
@@ -447,7 +448,7 @@ From the @charles.unemployed "Removing AI slop" reel, starting from the verifica
 
 ## Motion and faux UI
 
-[Distilled] from Emil Kowalski's skills (motion) and Benji Taylor's Stageshow (faux product UI). For depth, install them (see the "Companion skills and design references" section).
+[Distilled] from Emil Kowalski's skills (motion) and Benji Taylor's Stageshow (faux product UI). For depth, install them (see the "Companion skills and design references" section). [Saved] marks material from Stefano's saved reels.
 
 ### Should it animate at all?
 
@@ -487,6 +488,35 @@ Every animation needs a reason: spatial consistency, showing a change of state, 
 | No reduced-motion handling | Respect `prefers-reduced-motion`: replace movement with a fade or nothing |
 
 Test gestures (drawers, swipes) on a real phone.
+
+### 20 animation rules [Saved]
+
+From the @charles.unemployed reel "20 Ways to Make Beautiful AI Animations", saved as a screenshot of the list. The rule names are as shown on screen. "How to apply" is [Practice], not from the reel, except for rule 20, whose before and after demo is visible in the screenshot. ⚠️ marks a rule whose short name leaves its meaning open, so check it against the reel if it matters.
+
+Use these only once "Should it animate at all?" says yes. Reduced motion and "never animate keyboard-triggered actions" still apply.
+
+| # | Rule | How to apply |
+|---|---|---|
+| 1 | Ease-out for entrances | Use a strong ease-out curve for anything appearing |
+| 2 | Dropdowns at 150–250ms | Keep dropdowns and selects in this range |
+| 3 | Stagger list rows by 30ms | Use 30 ms for list rows; other groups can use up to 80 ms |
+| 4 | Scale to 0.97 on press | Apply `scale(0.97)` to a pressed button, with 100 to 160 ms timing |
+| 5 | Stretch moving knobs 12% | Stretch a toggle or slider knob by about 12% while it travels ⚠️ |
+| 6 | Stagger as details settle | Bring in secondary details just after the main object lands ⚠️ |
+| 7 | Arcs for object movement | Move objects along a slight curve rather than a straight line |
+| 8 | Pulse to confirm success | Pulse the completed element once, with text or an icon so colour isn't the only signal |
+| 9 | Ease-in-out for moves | Use it for anything already on screen that changes position |
+| 10 | Start popovers at 0.95 | Start from `scale(0.95)` with `opacity: 0` |
+| 11 | Enter from the trigger | Set `transform-origin` to the control that opened it |
+| 12 | Exit to the trigger | Close back towards the same control |
+| 13 | No bounce on everyday UI | Keep overshoot for rare moments, not routine controls |
+| 14 | Don't tween while held | Follow the pointer directly during a drag or press, and animate on release |
+| 15 | Make exits 20% shorter | A 200 ms entrance gets a 160 ms exit |
+| 16 | Overlap old & new states | Start the new state before the old one has gone, so there is no blank gap |
+| 17 | Masks for reveals & colour | Use `clip-path` or a mask to reveal content or sweep a colour change ⚠️ |
+| 18 | Crossfade icons + blur | Swap icons with opacity and a slight blur rather than a hard cut |
+| 19 | Rubber band past bounds | Add increasing resistance past a limit, then spring back on release |
+| 20 | Reuse the same layoutId | Make one object expand instead of swapping in a disconnected replacement. `layoutId` belongs to the Motion library (formerly Framer Motion); other stacks need their own shared-element approach ⚠️ |
 
 ### Faux product UI for marketing pages (Stageshow)
 
@@ -737,6 +767,21 @@ Standard to pick, from a screenshot Stefano saved: WCAG AA (the default), WCAG A
 - [ ] No exposed source maps
 - [ ] No massive JS bundles
 
+### Staging and preview environments [Saved]
+
+From the @paigethepm reel. If a vibe-coded app keeps breaking, ask whether you are "testing in prod": pushing code live to everyone and testing it there.
+
+- **Staging:** a production-like environment, separate from production, for testing new features and bug fixes.
+- **Setting it up:** this depends on your tools. You usually want a staging branch in GitHub and a staging environment at your hosting provider, such as Vercel, Bolt, Lovable or Cloudflare Workers. ⚠️ The reel gives no steps, so check each tool's current documentation.
+- **Quicker option when you're small:** preview branches. The reel names Vercel as doing this well: they show what a deployment will look like before it goes to production.
+
+Add when setting it up [Practice]:
+- [ ] Test new features and bug fixes on staging or a preview before production.
+- [ ] Give staging its own database and keys. A preview connected to the production database is not a safe test.
+- [ ] Never use real personal data for testing (see the "Security" section).
+- [ ] Restrict access to staging and preview URLs and keep them out of search engines. ⚠️ Settings vary by host.
+- [ ] Treat preview URLs as test addresses only. The live site still needs a real domain.
+
 ### Domain setup [Saved]
 
 From the @danielwelsh_routiq reel ("You bought the domain. Now what?"). About 10 minutes in total.
@@ -753,6 +798,7 @@ Add for each sending subdomain [Practice]: SPF, DKIM and DMARC records from the 
 - [ ] Legal pages match what the site or app actually does.
 - [ ] A real browser check confirms no non-essential tracker fires before consent.
 - [ ] Automated accessibility scan and manual keyboard and screen reader test completed. Automated tools alone are not enough.
+- [ ] The latest changes were tested on staging or a preview before going live.
 - [ ] All ⚠️ items relevant to this project have been verified.
 - [ ] Any remaining gaps have been reported plainly.
 
@@ -831,7 +877,7 @@ DESIGN.md is a plain markdown design system file (colours, type, spacing, compon
 ## Sources
 
 ### Stefano's saved material
-- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
+- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen; 20 animation rules, from a screenshot), @paigethepm (staging environments and preview branches), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
 - UX audit prompt (132 items), saved as a text file
 - Website and app build standards (UK and EU), version 3 November 2026
 - Accessibility standard options, from a screenshot (September 2026)

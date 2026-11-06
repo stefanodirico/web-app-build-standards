@@ -32,6 +32,7 @@ Apply this to every website, app or coding task. Read only the references the ta
 | Security review or "harden this" | [security.md](references/security.md) |
 | Launching, or "is it ready?" | [launch-checklist.md](references/launch-checklist.md), [legal-and-compliance.md](references/legal-and-compliance.md), and [app-stores.md](references/app-stores.md) for native apps |
 | Buying or setting up a domain or email sending | [launch-checklist.md](references/launch-checklist.md), domain setup |
+| Setting up staging or preview deployments, or an app that keeps breaking in production | [launch-checklist.md](references/launch-checklist.md), staging and preview environments |
 | Animation, transitions or a product demo | [motion-and-faux-ui.md](references/motion-and-faux-ui.md) |
 | "What features could we add?" | [feature-ideas.md](references/feature-ideas.md) |
 | Needs more depth or tooling | [companion-skills.md](references/companion-skills.md) |
