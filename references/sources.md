@@ -1,7 +1,8 @@
 # Sources
 
 ## Stefano's saved material
-- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
+- "How to protect your vibe coded app from getting sued" guide (the six legal holes, with fix prompts), from the skool.com/raycfu community, saved as a text file with six sketch images (November 2026)
+- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction; IDOR and logout tests), @dr.erinjacques (Google Fonts and the GDPR, with a self-hosting prompt), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
 - UX audit prompt (132 items), saved as a text file
 - Website and app build standards (UK and EU), version 3 November 2026
 - Accessibility standard options, from a screenshot (September 2026)
@@ -47,6 +48,17 @@
 - [AI Omnibus (Gibson Dunn)](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/)
 - [AEPD cookie guide summary (ECIJA)](https://www.ecija.com/actualidad-insights/guia-aepd-uso-cookies/)
 - [LSSI and cookies (Atico34)](https://protecciondatos-lopd.com/empresas/?p=36036)
+
+## US (checked 10 November 2026)
+- [SB 690 signed: CIPA reform (WilmerHale)](https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/20261006-cipa-reform-signed-into-law)
+- [SB 690 leaves §631 and §632 claims intact (Katten)](https://katten.com/california-partially-eliminates-california-invasion-of-privacy-act-claims-faced-by-many-companies)
+- [SB 690 and the 1 January 2027 start (Usercentrics, vendor)](https://usercentrics.com/us/?p=20647)
+- [FTC civil penalty amounts, 2025 adjustment (Federal Register)](https://www.federalregister.gov/documents/2025/01/17/2025-01361/adjustments-to-civil-penalty-amounts)
+- [No 2026 FTC penalty adjustment (CO Consulting, secondary)](https://christopholivierconsulting.com/?p=9137)
+- [California Automatic Renewal Law amendments (Cooley)](https://www.cooley.com/news/insight/2025/2025-06-04-california-automatic-renewal-law-amendments-take-effect-on-july-1-2025)
+- [California ARL price change notice (Perkins Coie)](https://perkinscoie.com/print/pdf/node/9051)
+- [DMCA designated agent FAQ (US Copyright Office)](https://copyright.gov/dmca-directory/faq.html)
+- [DMCA agent rules and address note (Perkins Coie)](https://perkinscoie.com/print/pdf/node/3757)
 
 ## Design
 - Claude's built-in frontend design skill (reviewed directly)

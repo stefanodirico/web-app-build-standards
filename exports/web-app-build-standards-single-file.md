@@ -22,11 +22,12 @@ Apply this to every website, app or coding task. Read only the sections the task
 
 | Task | Read |
 |---|---|
-| Starting a new site or app | the "Legal and compliance (UK, EU, Spain)" section (start-here questions), the "Design and craft" section (parts 1 to 4), the "Security" section, then set up the project files below |
+| Starting a new site or app | the "Legal and compliance (UK, EU, Spain, US)" section (start-here questions), the "Design and craft" section (parts 1 to 4), the "Security" section, then set up the project files below |
 | Building or changing UI | The project's DESIGN.md, the "Design and craft" section, relevant items in the "UX audit (132 items)" section |
 | "Audit the UX" or "review the app" | the "UX audit (132 items)" section, followed exactly: read-only, report table, then stop and ask which fixes to make |
 | Security review or "harden this" | the "Security" section |
-| Launching, or "is it ready?" | the "Launch checklist" section, the "Legal and compliance (UK, EU, Spain)" section, and the "App stores (Apple and Google)" section for native apps |
+| Launching, or "is it ready?" | the "Launch checklist" section, the "Legal and compliance (UK, EU, Spain, US)" section, and the "App stores (Apple and Google)" section for native apps |
+| "Could we get sued?" or a compliance audit of existing code | the "Compliance audit prompts" section (full audit first, read-only), then the "Legal and compliance (UK, EU, Spain, US)" section |
 | Buying or setting up a domain or email sending | the "Launch checklist" section, domain setup |
 | Animation, transitions or a product demo | the "Motion and faux UI" section |
 | "What features could we add?" | the "Feature ideas (optional)" section |
@@ -351,7 +352,7 @@ From the @haydenschmitty reel ("4 design patterns your vibe-coded app should be 
 1. **Skeleton loaders.** Grey bars in the shape of the layout while data loads. They cut perceived waiting time. Match the real content's geometry so nothing jumps.
 2. **Semantic colours.** Besides the brand palette, define success, warning, danger and info, each with light to dark shades, and use them consistently. Not using them makes an app harder to read.
 3. **Remove clutter.** AI tools love a two-sentence description under every heading ("My Day" does not need explaining). If it isn't tangibly useful, remove it.
-4. **Accessibility.** The most common gap in vibe-coded apps, and one that can lead to complaints or legal action. Check against WCAG 2.2 AA (see the "Legal and compliance (UK, EU, Spain)" section).
+4. **Accessibility.** The most common gap in vibe-coded apps, and one that can lead to complaints or legal action. Check against WCAG 2.2 AA (see the "Legal and compliance (UK, EU, Spain, US)" section).
 
 ### 5. Tells that make a design look generated
 
@@ -526,6 +527,13 @@ From Lincoln Devine's guide ([lincolndevine.com/guides/secure](https://lincolnde
 
 Dashboard settings (RLS toggles, Firebase rules in the console, bucket visibility) can't be seen by an agent reading code. Ask the user to check them, or use the provider's CLI if it is connected. Report findings ranked by blast radius: what an attacker could reach, and how many users it affects.
 
+### Two hands-on tests: shared URLs and logout [Saved]
+
+From a @securedbycasco reel, where the engineer answers a viral "why you shouldn't trust vibe-coded apps" video.
+
+1. **Insecure direct object reference (IDOR).** Signed in as user A, copy the URL of one of their records (for example `app.com/mail/a8f3e1c9`). Sign in as user B in another browser and open it. If B sees A's data, the app exposes an object ID in the URL or request but never checks that the user is authorised to see it. Change the ID, reach someone else's data. This is OWASP "broken access control" (CWE-639). Fix it on the server or database, not by hiding the link.
+2. **Logout.** Sign in, copy a private URL, log out, then paste the URL again. If it still loads, or the backend still accepts the old token, logout is cosmetic. A proper logout clears all four (the session token, auth and session cookies, localStorage and sessionStorage) and then invalidates the token on the server, so it can't be reused from any device.
+
 ### Hardening prompt, corrected [Saved]
 
 From a @securedbycasco reel, where a security engineer reacts to a popular prompt. The original asked to "review this app and harden its security" with: rate limiting on all public endpoints (IP and user-based, sensible defaults, graceful 429s); strict input validation and sanitisation on all user inputs (schema-based, type checks, length limits, reject unexpected fields); and secure API key handling (remove hard-coded keys, move to environment variables, rotate keys, no keys client-side), following OWASP, with clear comments and without breaking existing functionality.
@@ -565,6 +573,7 @@ Rules: enforce on the server or database, never only in the UI. Anything not lis
 - [ ] Turn on row-level security on every Supabase table holding user data, with policies limited to the correct user. In Firebase, set equivalent security rules.
 - [ ] Test as a logged-out user and as a second user. Change an ID in a request and confirm you cannot see someone else's data.
 - [ ] Check authentication on every API route.
+- [ ] Logging out clears the session token, cookies, localStorage and sessionStorage, and invalidates the token server-side.
 
 #### Hardening [Practice]
 - [ ] Validate all input on the server.
@@ -584,9 +593,9 @@ Rules: enforce on the server or database, never only in the UI. Anything not lis
 - [ ] Test the main user journeys and failure states before launch.
 - [ ] Set up backups and test a restore.
 
-## Legal and compliance (UK, EU, Spain)
+## Legal and compliance (UK, EU, Spain, US)
 
-Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026; **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
+Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
 
 This is a working checklist, not legal advice. Have a solicitor check anything high-risk, particularly payments, health data, children's data or user-generated content. Ask before making legal claims about a specific project.
 
@@ -595,13 +604,16 @@ This is a working checklist, not legal advice. Have a solicitor check anything h
 Answer these before building:
 
 - Who is the legal operator, and where is it established?
-- Does the site or app target people in the UK, the EU or both?
+- Does the site or app target people in the UK, the EU, the US, or a mix?
 - Does it collect personal data, including through forms, analytics or embeds?
 - Does it sell anything to consumers? Is it a one-off purchase or a subscription?
 - Could under-18s use it?
 - Can users post content or talk to each other?
 - Does it use an AI chatbot or publish AI-generated content?
 - Does it handle health or other special category data?
+- Does it send marketing email, sell a subscription, or let users upload content others can see?
+
+For a quick scan of an existing codebase, run the full audit prompt in the "Compliance audit prompts" section.
 
 ### UK rules [Researched]
 
@@ -617,6 +629,7 @@ Answer these before building:
 - [ ] To rely on the statistical exception, tell users clearly and give them a simple, free way to object. Any provider must act only on your behalf and not use the data for its own purposes.
 - [ ] Assume default Google Analytics needs consent. ⚠️ Based on vendor commentary, so check the current ICO text and configuration.
 - [ ] Advertising trackers need consent. The ICO has looked at relaxing enforcement for low-risk advertising, but do not assume that applies. ⚠️ This area may change.
+- [ ] Session replay and heatmap tools (Hotjar, FullStory, LogRocket, Microsoft Clarity and similar) are non-essential: load them only after consent, mask every input by default, and switch replay off on sign-up, login, checkout and account pages. [Saved] [Practice]
 - [ ] Fines under PECR now align with UK GDPR levels, up from the old £500,000 cap (about €575,000 ⚠️ approximate conversion).
 
 #### Data protection (UK GDPR and Data Protection Act 2018)
@@ -648,6 +661,14 @@ Answer these before building:
 - [ ] Do not build to the proposed Digital Omnibus cookie or GDPR changes. As of October 2026 the proposal was still at first reading. ⚠️ Recheck before launch.
 - [ ] Consider whether an EU representative is needed under GDPR Article 27 if there is no EU establishment. ⚠️ Background knowledge.
 
+#### Third-party fonts [Saved]
+- [ ] Self-host every font. Loading from fonts.googleapis.com or fonts.gstatic.com sends each visitor's IP address to Google before they have agreed to anything. Vibe-coded apps do this by default.
+- [ ] The case: in January 2022 the Munich Regional Court (LG München I) found this breached the GDPR and awarded the visitor €100 in damages. It set off a wave of demand letters in Germany.
+- [ ] ⚠️ One saved reel quotes "fines up to €250,000 per violation". That figure was the penalty the court threatened if the site kept doing it after the ruling, not a fine per visitor. Don't repeat it as a GDPR fine.
+- [ ] The same reasoning applies under UK GDPR, since an IP address is personal data. ⚠️ No UK ruling on this found; treat it as a risk, not settled law.
+- [ ] Check other third-party CDNs too (icon fonts, Adobe Fonts, script CDNs), and packages or themes that pull fonts in without an obvious link tag.
+- [ ] Verify in the browser: Network tab, reload, filter for "google". Nothing from either font domain should appear. Prompt in the "Compliance audit prompts" section.
+
 #### Accessibility (European Accessibility Act)
 - [ ] Check whether the service is covered. The Act has applied since 28 June 2025 and covers e-commerce services sold to EU consumers, including from outside the EU.
 - [ ] Use WCAG 2.1 AA, through EN 301 549, as the working standard. ⚠️ EAA-specific harmonised standards were reported as still being finalised, and native apps have extra requirements.
@@ -675,6 +696,182 @@ Answer these before building:
 - [ ] Check Spanish consumer law for any sales, including the withdrawal function. ⚠️ Not fully verified here.
 - [ ] Add other countries only after checking their local rules.
 
+### US (if targeting US users) [Saved]
+
+From the "How to protect your vibe coded app from getting sued" guide (the six legal holes). Figures and dates checked on 10 November 2026; see the "Sources" section. US rules can reach a UK or EU operator whose app is used by people in the US. Copy-paste fix prompts are in the "Compliance audit prompts" section.
+
+#### Session replay and wiretapping (California, CIPA)
+- [ ] Plaintiffs sue under the California Invasion of Privacy Act, arguing a third-party tool recording what visitors type is like tapping a phone call. Statutory damages are $5,000 (about €4,300 ⚠️ approximate conversion) per violation.
+- [ ] SB 690, signed on 30 September 2026, ends private lawsuits over pen-register and trap-and-trace claims (the tracking pixel theory) for websites and apps. It does not touch the wiretapping (§631) and eavesdropping (§632) sections that session replay claims rely on. [Researched] ⚠️ One source says it takes effect on 1 January 2027.
+- [ ] Fix: mask every input in replay tools, exclude passwords, payment fields and personal data, and load trackers only after consent. Check the tool's dashboard too: a project-level setting can override the code.
+
+#### Children under 13 (COPPA)
+- [ ] COPPA applies if the app is aimed at children, or you actually know a user is under 13. Then you need verified parental consent before collecting their data.
+- [ ] Civil penalties reach $53,088 (about €46,000 ⚠️ approximate conversion) per violation. [Researched] ⚠️ The FTC made no inflation adjustment for 2026, according to a secondary source; check 16 CFR 1.98.
+- [ ] The amended COPPA Rule had a compliance date of 22 April 2026.
+- [ ] For a general-audience app, use a neutral age screen: an empty date of birth field that doesn't hint at the required age (not an "I am over 13" tick-box). If under 13, don't create the account, store nothing they entered, and set a flag so they can't immediately retry with a different date. If 13 or over, store an "age verified" flag rather than the full date unless the app needs it.
+- [ ] Check landing pages, app store listings and marketing for anything aimed at children.
+- [ ] If the app is meant for children, stop and get a lawyer. Note the UK Children's Code covers under-18s, a much wider group than COPPA.
+
+#### Marketing email (CAN-SPAM, plus Gmail and Yahoo rules)
+- [ ] Covers launch emails, newsletters and promotions, even to people who joined your waitlist. Each non-compliant email can be a separate violation, up to $53,088.
+- [ ] Every marketing email needs a real postal address (a registered PO box or mailbox service counts), a clear unsubscribe link that works without logging in, a truthful subject line and a real from name.
+- [ ] Honour unsubscribes within 10 business days, across every marketing list, and make the send code skip them.
+- [ ] Since 2024, bulk senders (more than 5,000 a day to Gmail) need one-click unsubscribe headers: `List-Unsubscribe` and `List-Unsubscribe-Post: List-Unsubscribe=One-Click`. Most providers (Resend, Loops, ConvertKit, Mailchimp) handle this once turned on.
+- [ ] Send the launch email to yourself first and test the unsubscribe link.
+- [ ] Transactional email (receipts, password resets) is treated differently; list it, but don't add marketing footers to it.
+
+#### Subscriptions and auto-renewal (ROSCA, California ARL)
+- [ ] Federal ROSCA: show all material terms before taking card details, get clear consent, and give a simple way to cancel. The FTC is actively enforcing it.
+- [ ] California's amended Automatic Renewal Law, in force since 1 July 2025: express affirmative consent to the auto-renewal terms; keep proof for three years or one year after the contract ends, whichever is longer; send an annual reminder; give 7 to 30 days' notice of a price increase. [Researched]
+- [ ] Next to the pay button, show the price, how often it is charged, that it renews until cancelled, when the first charge happens (including when a trial ends), and how to cancel.
+- [ ] Offer online cancellation as easy as signing up (for Stripe, the customer portal with cancellation on), send a confirmation email repeating the terms, and store a consent record (timestamp, terms shown, plan).
+- [ ] The five-second test: could a stranger tell what they pay, how often, and how to stop?
+- [ ] ⚠️ The FTC's 2024 "click to cancel" rule was struck down by a federal appeals court in July 2025 (background knowledge, not rechecked); ROSCA and state laws still apply.
+
+#### User uploads (DMCA safe harbour, CSAM reporting)
+- [ ] If users can upload content others can see, the DMCA safe harbour only protects you if it is set up properly. A disclaimer alone isn't enough.
+- [ ] Register a designated agent with the US Copyright Office: $6 (about €5 ⚠️ approximate conversion), valid for three years, so diary the renewal. [Researched] The agent can be you, a role such as "Legal Team", or a service. ⚠️ The guide says a PO box works for the address; one law firm says the service provider's own address must be a physical street address, so check the form.
+- [ ] Publish a /copyright page with the agent's details and what a valid notice must include, add a Report button on every piece of user content, and write a repeat infringer policy into the terms (for example, suspension after three valid strikes).
+- [ ] Put a line under upload forms: only upload content you own or have permission to share.
+- [ ] US law requires platforms to report child sexual abuse material to NCMEC when they become aware of it. For image-heavy apps, look at a scanning service (Cloudflare's CSAM Scanning Tool is free for Cloudflare users) and get legal advice on the reporting process. In the UK, also check the Online Safety Act duties above.
+
+#### Privacy policy (CalOPPA)
+- [ ] California's online privacy law requires a privacy policy if you collect personal information from California residents, which in practice means any app with a sign-up form.
+- [ ] Draft it from what the code actually collects and shares, not a template, and mark points for lawyer review.
+
+## Compliance audit prompts
+
+Copy-paste prompts for an AI coding tool that can read the whole project (Claude Code, Codex, Cursor, Gemini CLI). Adapted from the "How to protect your vibe coded app from getting sued" guide [Saved], widened to cover UK and EU rules. The rules behind each prompt, with sources and caveats, are in the "Legal and compliance (UK, EU, Spain, US)" section. This is a working checklist, not legal advice.
+
+You'll need: the code open in the tool, access to the email provider, Stripe and analytics dashboards, and about two hours. Most fixes take 5 to 15 minutes. If users can upload files, budget $6 (about €5 ⚠️ approximate conversion) for the DMCA agent registration.
+
+### 1. Full audit (run first, changes nothing)
+
+```text
+Audit this codebase for common legal compliance risks. Do not change any code. Read the whole project and, for each item below, report FOUND, NOT FOUND or UNSURE, the exact files and line numbers, and a one-sentence fix.
+
+1. Fonts: anything loaded from fonts.googleapis.com, fonts.gstatic.com or another third-party font or asset CDN, including CSS @import, <link> tags, packages and themes.
+2. Third-party tracking: every analytics, session replay, heatmap or chat widget script (for example Hotjar, FullStory, LogRocket, Microsoft Clarity, PostHog, Mixpanel, Google Analytics, Intercom). For each, say whether it can record keystrokes or form inputs, and whether it loads before consent.
+3. Consent: is there a consent banner, are Accept and Reject equally easy, and do non-essential scripts, cookies, pixels and local storage actually wait for consent?
+4. Age: does sign-up ask for age or date of birth? Is any part of the app or its marketing aimed at children?
+5. Email: every place the app sends marketing or newsletter email. Does each template include a postal address, a working unsubscribe link and List-Unsubscribe headers? Does the send code skip unsubscribed people?
+6. Subscriptions: every checkout or pricing page with a recurring charge or a trial that converts to paid. Are the price, frequency, renewal terms, first charge date and how to cancel shown next to the pay button? Can users cancel online? Is consent recorded?
+7. User uploads: every place users can post files, images or text others can see. Is there a terms of service, a copyright takedown page and a Report button?
+8. Legal pages and business details: is there a privacy policy, terms, cookies policy and, where relevant, refund policy and company details, linked from the footer and the sign-up form?
+9. Access control: can one user open another user's record by changing an ID in a URL or request, and does logout invalidate the session on the server?
+
+Finish with a table ranked from highest to lowest risk. Mark anything you can't judge from code as MANUAL, with how to check it.
+```
+
+Save the report and work through the fixes below one at a time.
+
+### 2. Self-host fonts
+
+```text
+Find every font this project loads from Google Fonts or any other external font service. For each one:
+1. Download the exact woff2 files for the weights and styles actually used.
+2. Save them under /fonts in the public or static folder.
+3. Replace the external <link> or @import with local @font-face rules using font-display: swap.
+4. Remove every remaining reference to fonts.googleapis.com and fonts.gstatic.com.
+If this is a Next.js project, use next/font/local instead.
+Then search the whole project, including node_modules, CSS and config files, and confirm no external font domains remain. If a package or theme still loads them, tell me which one.
+```
+
+Check: open the live site, Network tab, reload, filter for "google". Nothing from either font domain should load.
+
+### 3. Mask session replay and gate tracking on consent
+
+```text
+For every analytics, session replay or heatmap tool in this project:
+1. Turn on input masking so no keystrokes or form values are ever recorded. Use the tool's own setting (for example maskAllInputs, data-hj-suppress, fs-mask) and mask every input, textarea and contenteditable element by default.
+2. Exclude passwords, payment fields, email addresses and other personal data from recordings entirely.
+3. Load the tool only after the user accepts in a consent banner. If there is no banner, add one with Accept and Reject buttons that are equally easy to use, and remember the choice.
+4. Switch session replay off completely on sign-up, login, checkout and account settings pages.
+Show me every change.
+```
+
+Check: in the tool's dashboard, confirm the project-level privacy setting matches, then record a test session and type a fake email to confirm it is masked.
+
+### 4. Neutral age screen
+
+```text
+Add a neutral age screen to the sign-up flow:
+1. Ask for date of birth with an empty date picker. Do not pre-fill it or say what age is required.
+2. If the user is under [13 for a US-only app; confirm the UK and EU threshold with me first], do not create the account and do not store the date of birth, email or anything else they entered. Show a polite message that the app isn't available for their age.
+3. Set a cookie or local storage flag so they can't immediately go back and enter a different date.
+4. If they are old enough, continue sign-up and store only an "age verified" flag unless the app needs the full date.
+Also list anything in the landing page, app store listing or marketing copy that could look aimed at children.
+```
+
+If the app is meant for children, stop and get a lawyer. In the UK, the Children's Code applies to under-18s likely to use the service, and a self-declared age may not be enough.
+
+### 5. Marketing email
+
+```text
+Audit every marketing, newsletter and announcement email this app sends. List transactional emails (password resets, receipts) separately but don't change them.
+For each marketing template:
+1. Add a footer with the business name and postal address: [ADDRESS].
+2. Add a clear unsubscribe link that works without logging in.
+3. Add List-Unsubscribe and List-Unsubscribe-Post: List-Unsubscribe=One-Click headers if the provider supports them.
+4. Make sure the subject line isn't misleading and the from name is the real business name.
+Then check that unsubscribing removes the person from every marketing list and that the send code skips them. Show me where that check happens.
+```
+
+Check: send the launch email to yourself first and click unsubscribe.
+
+### 6. Subscription checkout
+
+```text
+Audit every checkout and pricing page that sells a recurring subscription or a free trial that converts to paid.
+1. Next to the purchase button, show in plain text: the price, how often it is charged, that it renews automatically until cancelled, when the first charge happens (including when a trial ends), and exactly how to cancel.
+2. If we use Stripe Checkout, add this with custom_text near the submit button, and set consent_collection for terms of service so the user must tick a box before paying.
+3. Add online cancellation as easy as signing up. With Stripe, turn on the customer portal with cancellation enabled and link to it from the account page.
+4. Send a confirmation email after purchase repeating the terms and how to cancel.
+5. Store a consent record for each user (timestamp, terms shown, plan) in the database.
+Show me the checkout page before and after.
+```
+
+Check: could a stranger tell in five seconds what they pay, how often, and how to stop? If Stripe won't show the custom text in your Checkout mode, put the terms on your own pricing page directly above the button that sends people to Stripe.
+
+### 7. User uploads
+
+```text
+Set up user content protection:
+1. Create a /copyright page explaining how to send a copyright takedown notice, with our designated agent's name, address and email: [AGENT DETAILS FROM THE COPYRIGHT OFFICE REGISTRATION]. List what a valid DMCA notice must include.
+2. Add a Report button on every piece of user-uploaded content that sends the report to an admin queue.
+3. Add an admin action to remove reported content and track strikes per user. After 3 valid copyright strikes, suspend the account. Write this repeat infringer policy into the terms of service.
+4. Under every upload form, add: "Only upload content you own or have permission to share. See our Terms and Copyright Policy."
+5. Link the Terms of Service and Copyright Policy in the footer.
+```
+
+Register the agent at copyright.gov first ($6, renew every three years). For image uploads, also plan for CSAM detection and reporting, and in the UK check the Online Safety Act.
+
+### 8. Privacy policy and terms from the real code
+
+```text
+Read this whole codebase and list every piece of personal data the app collects (including what third-party tools such as analytics, Stripe and the email provider collect), where it is stored, and who it is shared with. Then draft a plain-English privacy policy and terms of service based on what the app actually does, not a generic template. Cover UK GDPR and, where relevant, EU GDPR and California rules. Mark every point a lawyer should review with [LAWYER REVIEW]. Add both pages and link them in the footer and next to the sign-up button.
+```
+
+An AI draft based on the real code beats a copied template, but it is still a draft: have a lawyer check it before you scale.
+
+### 9. Access control and logout
+
+```text
+Check access control and logout. Do not change code yet.
+1. List every route or endpoint that takes a record ID (in the URL, query or body). For each, show where the server checks that the signed-in user is allowed to see or change that record. Flag any that only rely on the ID being hard to guess.
+2. Show what logout does. Confirm it clears the session token, auth cookies, localStorage and sessionStorage, and invalidates the token on the server.
+Report as a table with file:line and a one-sentence fix, then stop.
+```
+
+Check by hand: open user A's record URL as user B, and paste a private URL after logging out. Neither should load.
+
+### When things go wrong
+
+- **The AI says the fonts are fixed but Google still loads.** A package or theme is pulling them in. Ask it to search node_modules and every CSS and config file for googleapis and gstatic and name the package.
+- **Replay still shows typed text.** The dashboard setting overrides the code. Change it there and test again with a fake email.
+- **You get a legal letter or demand.** Don't ignore it and don't reply yourself. Send it to a lawyer and fix the issue it describes straight away.
+
 ## Launch checklist
 
 Run before any site or app goes live, and again after big changes. Mark each item passed, failed, N/A or UNSURE, with evidence. Labels: [Saved] from Stefano's saved reels; ⚠️ verify before relying on it.
@@ -689,7 +886,7 @@ From the @yatesvids and @buildwithfrancis reels.
 - [ ] Cookies policy
 - [ ] Refund policy, where something is sold
 - [ ] Real business details
-- [ ] Local laws checked (see the "Legal and compliance (UK, EU, Spain)" section)
+- [ ] Local laws checked (see the "Legal and compliance (UK, EU, Spain, US)" section)
 
 #### Consent and data
 - [ ] Cookie consent checked
@@ -736,6 +933,21 @@ Standard to pick, from a screenshot Stefano saved: WCAG AA (the default), WCAG A
 - [ ] No leftover console.logs
 - [ ] No exposed source maps
 - [ ] No massive JS bundles
+
+### The six legal holes [Saved]
+
+From the "How to protect your vibe coded app from getting sued" guide and the @dr.erinjacques and @securedbycasco reels. Run the full audit prompt in the "Compliance audit prompts" section before every launch, not just the first.
+
+- [ ] Fonts load from your own app, not Google or another font CDN
+- [ ] Session replay masks every input and loads only after consent
+- [ ] Consent banner has Accept and Reject buttons that are equally easy to click
+- [ ] Sign-up has a neutral age screen if children could use it; under-13s blocked without storing their data (US), Children's Code applied for under-18s (UK)
+- [ ] Every marketing email has a postal address and a working unsubscribe link; unsubscribes honoured within 10 business days
+- [ ] Checkout shows price, frequency, auto-renewal and how to cancel next to the pay button
+- [ ] Users can cancel online as easily as they signed up; consent records saved for every subscriber
+- [ ] If users upload content: DMCA agent registered ($6, renew every three years), copyright page live, Report button on every piece of user content
+- [ ] Privacy policy and terms linked in the footer and at sign-up
+- [ ] User B can't open user A's record by URL, and a logged-out URL no longer loads (see the "Security" section)
 
 ### Domain setup [Saved]
 
@@ -799,7 +1011,7 @@ Source: a reel screenshot, "20 cool features Claude can add to your website in o
 | 19 | Form success notification | Every form | Say what happens next (item 92, 52) |
 | 20 | Offline access | Apps used on the move | Service workers cache data; plan updates and clearing |
 
-UK rules in force since 5 February 2026 include an exception for remembering appearance preferences such as language or dark mode (the "Legal and compliance (UK, EU, Spain)" section).
+UK rules in force since 5 February 2026 include an exception for remembering appearance preferences such as language or dark mode (the "Legal and compliance (UK, EU, Spain, US)" section).
 
 ## Companion skills and design references
 
@@ -831,7 +1043,8 @@ DESIGN.md is a plain markdown design system file (colours, type, spacing, compon
 ## Sources
 
 ### Stefano's saved material
-- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
+- "How to protect your vibe coded app from getting sued" guide (the six legal holes, with fix prompts), from the skool.com/raycfu community, saved as a text file with six sketch images (November 2026)
+- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction; IDOR and logout tests), @dr.erinjacques (Google Fonts and the GDPR, with a self-hosting prompt), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
 - UX audit prompt (132 items), saved as a text file
 - Website and app build standards (UK and EU), version 3 November 2026
 - Accessibility standard options, from a screenshot (September 2026)
@@ -877,6 +1090,17 @@ DESIGN.md is a plain markdown design system file (colours, type, spacing, compon
 - [AI Omnibus (Gibson Dunn)](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/)
 - [AEPD cookie guide summary (ECIJA)](https://www.ecija.com/actualidad-insights/guia-aepd-uso-cookies/)
 - [LSSI and cookies (Atico34)](https://protecciondatos-lopd.com/empresas/?p=36036)
+
+### US (checked 10 November 2026)
+- [SB 690 signed: CIPA reform (WilmerHale)](https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/20261006-cipa-reform-signed-into-law)
+- [SB 690 leaves §631 and §632 claims intact (Katten)](https://katten.com/california-partially-eliminates-california-invasion-of-privacy-act-claims-faced-by-many-companies)
+- [SB 690 and the 1 January 2027 start (Usercentrics, vendor)](https://usercentrics.com/us/?p=20647)
+- [FTC civil penalty amounts, 2025 adjustment (Federal Register)](https://www.federalregister.gov/documents/2025/01/17/2025-01361/adjustments-to-civil-penalty-amounts)
+- [No 2026 FTC penalty adjustment (CO Consulting, secondary)](https://christopholivierconsulting.com/?p=9137)
+- [California Automatic Renewal Law amendments (Cooley)](https://www.cooley.com/news/insight/2025/2025-06-04-california-automatic-renewal-law-amendments-take-effect-on-july-1-2025)
+- [California ARL price change notice (Perkins Coie)](https://perkinscoie.com/print/pdf/node/9051)
+- [DMCA designated agent FAQ (US Copyright Office)](https://copyright.gov/dmca-directory/faq.html)
+- [DMCA agent rules and address note (Perkins Coie)](https://perkinscoie.com/print/pdf/node/3757)
 
 ### Design
 - Claude's built-in frontend design skill (reviewed directly)

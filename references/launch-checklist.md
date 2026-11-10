@@ -60,6 +60,21 @@ Standard to pick, from a screenshot Stefano saved: WCAG AA (the default), WCAG A
 - [ ] No exposed source maps
 - [ ] No massive JS bundles
 
+## The six legal holes [Saved]
+
+From the "How to protect your vibe coded app from getting sued" guide and the @dr.erinjacques and @securedbycasco reels. Run the full audit prompt in [compliance-audit-prompts.md](compliance-audit-prompts.md) before every launch, not just the first.
+
+- [ ] Fonts load from your own app, not Google or another font CDN
+- [ ] Session replay masks every input and loads only after consent
+- [ ] Consent banner has Accept and Reject buttons that are equally easy to click
+- [ ] Sign-up has a neutral age screen if children could use it; under-13s blocked without storing their data (US), Children's Code applied for under-18s (UK)
+- [ ] Every marketing email has a postal address and a working unsubscribe link; unsubscribes honoured within 10 business days
+- [ ] Checkout shows price, frequency, auto-renewal and how to cancel next to the pay button
+- [ ] Users can cancel online as easily as they signed up; consent records saved for every subscriber
+- [ ] If users upload content: DMCA agent registered ($6, renew every three years), copyright page live, Report button on every piece of user content
+- [ ] Privacy policy and terms linked in the footer and at sign-up
+- [ ] User B can't open user A's record by URL, and a logged-out URL no longer loads (see [security.md](security.md))
+
 ## Domain setup [Saved]
 
 From the @danielwelsh_routiq reel ("You bought the domain. Now what?"). About 10 minutes in total.

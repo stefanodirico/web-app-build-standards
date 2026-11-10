@@ -1,6 +1,6 @@
-# Legal and compliance (UK, EU, Spain)
+# Legal and compliance (UK, EU, Spain, US)
 
-Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026; **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
+Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
 
 This is a working checklist, not legal advice. Have a solicitor check anything high-risk, particularly payments, health data, children's data or user-generated content. Ask before making legal claims about a specific project.
 
@@ -9,13 +9,16 @@ This is a working checklist, not legal advice. Have a solicitor check anything h
 Answer these before building:
 
 - Who is the legal operator, and where is it established?
-- Does the site or app target people in the UK, the EU or both?
+- Does the site or app target people in the UK, the EU, the US, or a mix?
 - Does it collect personal data, including through forms, analytics or embeds?
 - Does it sell anything to consumers? Is it a one-off purchase or a subscription?
 - Could under-18s use it?
 - Can users post content or talk to each other?
 - Does it use an AI chatbot or publish AI-generated content?
 - Does it handle health or other special category data?
+- Does it send marketing email, sell a subscription, or let users upload content others can see?
+
+For a quick scan of an existing codebase, run the full audit prompt in [compliance-audit-prompts.md](compliance-audit-prompts.md).
 
 ## UK rules [Researched]
 
@@ -31,6 +34,7 @@ Answer these before building:
 - [ ] To rely on the statistical exception, tell users clearly and give them a simple, free way to object. Any provider must act only on your behalf and not use the data for its own purposes.
 - [ ] Assume default Google Analytics needs consent. ⚠️ Based on vendor commentary, so check the current ICO text and configuration.
 - [ ] Advertising trackers need consent. The ICO has looked at relaxing enforcement for low-risk advertising, but do not assume that applies. ⚠️ This area may change.
+- [ ] Session replay and heatmap tools (Hotjar, FullStory, LogRocket, Microsoft Clarity and similar) are non-essential: load them only after consent, mask every input by default, and switch replay off on sign-up, login, checkout and account pages. [Saved] [Practice]
 - [ ] Fines under PECR now align with UK GDPR levels, up from the old £500,000 cap (about €575,000 ⚠️ approximate conversion).
 
 ### Data protection (UK GDPR and Data Protection Act 2018)
@@ -62,6 +66,14 @@ Answer these before building:
 - [ ] Do not build to the proposed Digital Omnibus cookie or GDPR changes. As of October 2026 the proposal was still at first reading. ⚠️ Recheck before launch.
 - [ ] Consider whether an EU representative is needed under GDPR Article 27 if there is no EU establishment. ⚠️ Background knowledge.
 
+### Third-party fonts [Saved]
+- [ ] Self-host every font. Loading from fonts.googleapis.com or fonts.gstatic.com sends each visitor's IP address to Google before they have agreed to anything. Vibe-coded apps do this by default.
+- [ ] The case: in January 2022 the Munich Regional Court (LG München I) found this breached the GDPR and awarded the visitor €100 in damages. It set off a wave of demand letters in Germany.
+- [ ] ⚠️ One saved reel quotes "fines up to €250,000 per violation". That figure was the penalty the court threatened if the site kept doing it after the ruling, not a fine per visitor. Don't repeat it as a GDPR fine.
+- [ ] The same reasoning applies under UK GDPR, since an IP address is personal data. ⚠️ No UK ruling on this found; treat it as a risk, not settled law.
+- [ ] Check other third-party CDNs too (icon fonts, Adobe Fonts, script CDNs), and packages or themes that pull fonts in without an obvious link tag.
+- [ ] Verify in the browser: Network tab, reload, filter for "google". Nothing from either font domain should appear. Prompt in [compliance-audit-prompts.md](compliance-audit-prompts.md).
+
 ### Accessibility (European Accessibility Act)
 - [ ] Check whether the service is covered. The Act has applied since 28 June 2025 and covers e-commerce services sold to EU consumers, including from outside the EU.
 - [ ] Use WCAG 2.1 AA, through EN 301 549, as the working standard. ⚠️ EAA-specific harmonised standards were reported as still being finalised, and native apps have extra requirements.
@@ -88,3 +100,47 @@ Answer these before building:
 - [ ] Check the aviso legal details required by Article 10 of the LSSI. ⚠️ Not fully verified here.
 - [ ] Check Spanish consumer law for any sales, including the withdrawal function. ⚠️ Not fully verified here.
 - [ ] Add other countries only after checking their local rules.
+
+## US (if targeting US users) [Saved]
+
+From the "How to protect your vibe coded app from getting sued" guide (the six legal holes). Figures and dates checked on 10 November 2026; see [sources.md](sources.md). US rules can reach a UK or EU operator whose app is used by people in the US. Copy-paste fix prompts are in [compliance-audit-prompts.md](compliance-audit-prompts.md).
+
+### Session replay and wiretapping (California, CIPA)
+- [ ] Plaintiffs sue under the California Invasion of Privacy Act, arguing a third-party tool recording what visitors type is like tapping a phone call. Statutory damages are $5,000 (about €4,300 ⚠️ approximate conversion) per violation.
+- [ ] SB 690, signed on 30 September 2026, ends private lawsuits over pen-register and trap-and-trace claims (the tracking pixel theory) for websites and apps. It does not touch the wiretapping (§631) and eavesdropping (§632) sections that session replay claims rely on. [Researched] ⚠️ One source says it takes effect on 1 January 2027.
+- [ ] Fix: mask every input in replay tools, exclude passwords, payment fields and personal data, and load trackers only after consent. Check the tool's dashboard too: a project-level setting can override the code.
+
+### Children under 13 (COPPA)
+- [ ] COPPA applies if the app is aimed at children, or you actually know a user is under 13. Then you need verified parental consent before collecting their data.
+- [ ] Civil penalties reach $53,088 (about €46,000 ⚠️ approximate conversion) per violation. [Researched] ⚠️ The FTC made no inflation adjustment for 2026, according to a secondary source; check 16 CFR 1.98.
+- [ ] The amended COPPA Rule had a compliance date of 22 April 2026.
+- [ ] For a general-audience app, use a neutral age screen: an empty date of birth field that doesn't hint at the required age (not an "I am over 13" tick-box). If under 13, don't create the account, store nothing they entered, and set a flag so they can't immediately retry with a different date. If 13 or over, store an "age verified" flag rather than the full date unless the app needs it.
+- [ ] Check landing pages, app store listings and marketing for anything aimed at children.
+- [ ] If the app is meant for children, stop and get a lawyer. Note the UK Children's Code covers under-18s, a much wider group than COPPA.
+
+### Marketing email (CAN-SPAM, plus Gmail and Yahoo rules)
+- [ ] Covers launch emails, newsletters and promotions, even to people who joined your waitlist. Each non-compliant email can be a separate violation, up to $53,088.
+- [ ] Every marketing email needs a real postal address (a registered PO box or mailbox service counts), a clear unsubscribe link that works without logging in, a truthful subject line and a real from name.
+- [ ] Honour unsubscribes within 10 business days, across every marketing list, and make the send code skip them.
+- [ ] Since 2024, bulk senders (more than 5,000 a day to Gmail) need one-click unsubscribe headers: `List-Unsubscribe` and `List-Unsubscribe-Post: List-Unsubscribe=One-Click`. Most providers (Resend, Loops, ConvertKit, Mailchimp) handle this once turned on.
+- [ ] Send the launch email to yourself first and test the unsubscribe link.
+- [ ] Transactional email (receipts, password resets) is treated differently; list it, but don't add marketing footers to it.
+
+### Subscriptions and auto-renewal (ROSCA, California ARL)
+- [ ] Federal ROSCA: show all material terms before taking card details, get clear consent, and give a simple way to cancel. The FTC is actively enforcing it.
+- [ ] California's amended Automatic Renewal Law, in force since 1 July 2025: express affirmative consent to the auto-renewal terms; keep proof for three years or one year after the contract ends, whichever is longer; send an annual reminder; give 7 to 30 days' notice of a price increase. [Researched]
+- [ ] Next to the pay button, show the price, how often it is charged, that it renews until cancelled, when the first charge happens (including when a trial ends), and how to cancel.
+- [ ] Offer online cancellation as easy as signing up (for Stripe, the customer portal with cancellation on), send a confirmation email repeating the terms, and store a consent record (timestamp, terms shown, plan).
+- [ ] The five-second test: could a stranger tell what they pay, how often, and how to stop?
+- [ ] ⚠️ The FTC's 2024 "click to cancel" rule was struck down by a federal appeals court in July 2025 (background knowledge, not rechecked); ROSCA and state laws still apply.
+
+### User uploads (DMCA safe harbour, CSAM reporting)
+- [ ] If users can upload content others can see, the DMCA safe harbour only protects you if it is set up properly. A disclaimer alone isn't enough.
+- [ ] Register a designated agent with the US Copyright Office: $6 (about €5 ⚠️ approximate conversion), valid for three years, so diary the renewal. [Researched] The agent can be you, a role such as "Legal Team", or a service. ⚠️ The guide says a PO box works for the address; one law firm says the service provider's own address must be a physical street address, so check the form.
+- [ ] Publish a /copyright page with the agent's details and what a valid notice must include, add a Report button on every piece of user content, and write a repeat infringer policy into the terms (for example, suspension after three valid strikes).
+- [ ] Put a line under upload forms: only upload content you own or have permission to share.
+- [ ] US law requires platforms to report child sexual abuse material to NCMEC when they become aware of it. For image-heavy apps, look at a scanning service (Cloudflare's CSAM Scanning Tool is free for Cloudflare users) and get legal advice on the reporting process. In the UK, also check the Online Safety Act duties above.
+
+### Privacy policy (CalOPPA)
+- [ ] California's online privacy law requires a privacy policy if you collect personal information from California residents, which in practice means any app with a sign-up form.
+- [ ] Draft it from what the code actually collects and shares, not a template, and mark points for lawyer review.
