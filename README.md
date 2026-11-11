@@ -1,6 +1,6 @@
 # Website and app build standards
 
-An agent skill for planning, building, reviewing and launching websites and apps: UK and EU legal checks, a 132-item UX audit, design that doesn't look AI-generated, security, domain setup, app store rules and a launch checklist.
+An agent skill for planning, building, reviewing and launching websites and apps: UK, EU and US legal checks, a 132-item UX audit, design that doesn't look AI-generated, security, domain setup, app store rules and a launch checklist.
 
 It follows the open Agent Skills format: `SKILL.md` is the entry point and `references/` holds the detail each task loads.
 

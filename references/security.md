@@ -14,6 +14,13 @@ From Lincoln Devine's guide ([lincolndevine.com/guides/secure](https://lincolnde
 
 Dashboard settings (RLS toggles, Firebase rules in the console, bucket visibility) can't be seen by an agent reading code. Ask the user to check them, or use the provider's CLI if it is connected. Report findings ranked by blast radius: what an attacker could reach, and how many users it affects.
 
+## Two hands-on tests: shared URLs and logout [Saved]
+
+From a @securedbycasco reel, where the engineer answers a viral "why you shouldn't trust vibe-coded apps" video.
+
+1. **Insecure direct object reference (IDOR).** Signed in as user A, copy the URL of one of their records (for example `app.com/mail/a8f3e1c9`). Sign in as user B in another browser and open it. If B sees A's data, the app exposes an object ID in the URL or request but never checks that the user is authorised to see it. Change the ID, reach someone else's data. This is OWASP "broken access control" (CWE-639). Fix it on the server or database, not by hiding the link.
+2. **Logout.** Sign in, copy a private URL, log out, then paste the URL again. If it still loads, or the backend still accepts the old token, logout is cosmetic. A proper logout clears all four (the session token, auth and session cookies, localStorage and sessionStorage) and then invalidates the token on the server, so it can't be reused from any device.
+
 ## Hardening prompt, corrected [Saved]
 
 From a @securedbycasco reel, where a security engineer reacts to a popular prompt. The original asked to "review this app and harden its security" with: rate limiting on all public endpoints (IP and user-based, sensible defaults, graceful 429s); strict input validation and sanitisation on all user inputs (schema-based, type checks, length limits, reject unexpected fields); and secure API key handling (remove hard-coded keys, move to environment variables, rotate keys, no keys client-side), following OWASP, with clear comments and without breaking existing functionality.
@@ -53,6 +60,7 @@ Rules: enforce on the server or database, never only in the UI. Anything not lis
 - [ ] Turn on row-level security on every Supabase table holding user data, with policies limited to the correct user. In Firebase, set equivalent security rules.
 - [ ] Test as a logged-out user and as a second user. Change an ID in a request and confirm you cannot see someone else's data.
 - [ ] Check authentication on every API route.
+- [ ] Logging out clears the session token, cookies, localStorage and sessionStorage, and invalidates the token server-side.
 
 ### Hardening [Practice]
 - [ ] Validate all input on the server.

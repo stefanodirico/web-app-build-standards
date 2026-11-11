@@ -1,6 +1,6 @@
 ---
 name: web-app-build-standards
-description: Stefano's standards for planning, building, reviewing and launching websites and apps. Covers UK and EU legal checks, a 132-item UX audit, design that doesn't look AI-generated, security for vibe-coded apps, domain setup, app store rules and a launch checklist. Use for any website, web app, mobile app, landing page, UI, front-end or coding task, and whenever asked to audit, review, harden or launch one.
+description: Stefano's standards for planning, building, reviewing and launching websites and apps. Covers UK, EU and US legal checks, a 132-item UX audit, design that doesn't look AI-generated, security for vibe-coded apps, domain setup, app store rules and a launch checklist. Use for any website, web app, mobile app, landing page, UI, front-end or coding task, and whenever asked to audit, review, harden or launch one.
 ---
 
 # Website and app build standards
@@ -31,6 +31,7 @@ Apply this to every website, app or coding task. Read only the references the ta
 | "Audit the UX" or "review the app" | [ux-audit.md](references/ux-audit.md), followed exactly: read-only, report table, then stop and ask which fixes to make |
 | Security review or "harden this" | [security.md](references/security.md) |
 | Launching, or "is it ready?" | [launch-checklist.md](references/launch-checklist.md), [legal-and-compliance.md](references/legal-and-compliance.md), and [app-stores.md](references/app-stores.md) for native apps |
+| "Could we get sued?" or a compliance audit of existing code | [compliance-audit-prompts.md](references/compliance-audit-prompts.md) (full audit first, read-only), then [legal-and-compliance.md](references/legal-and-compliance.md) |
 | Buying or setting up a domain or email sending | [launch-checklist.md](references/launch-checklist.md), domain setup |
 | Animation, transitions or a product demo | [motion-and-faux-ui.md](references/motion-and-faux-ui.md) |
 | "What features could we add?" | [feature-ideas.md](references/feature-ideas.md) |
