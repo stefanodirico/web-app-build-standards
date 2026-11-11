@@ -6,14 +6,14 @@ It follows the open Agent Skills format: `SKILL.md` is the entry point and `refe
 
 ## Install
 
-This repo is private, so any tool that installs from it must be signed in to a GitHub account with access.
+This repo is public, so any tool can install from it without signing in. Only the owner can change it.
 
 | Tool | How |
 |---|---|
 | Codex | Clone or copy this folder into `~/.agents/skills/web-app-build-standards/` (all projects) or `.agents/skills/` in a repo |
 | Gemini CLI | `gemini skills install https://github.com/stefanodirico/web-app-build-standards.git`, or copy into `~/.agents/skills/` |
 | Claude Code | Copy this folder into `~/.claude/skills/web-app-build-standards/` |
-| Claude app | Save it from Claude's skill card, or upload a zip of `SKILL.md` and `references/` |
+| Claude app | Save it from Claude's skill card. That copy is a short loader that reads the latest files from this repo each time, so it never goes stale. Or upload a zip of `SKILL.md` and `references/` |
 | Google AI Studio, Gemini Gems, ChatGPT | Paste or upload `exports/web-app-build-standards-single-file.md` as instructions or knowledge |
 
 ## Updating
@@ -23,6 +23,8 @@ Edit `SKILL.md` or a file in `references/`, then rebuild the single-file export:
 ```
 python3 scripts/build-single-file.py
 ```
+
+Agents working on this repo follow [AGENTS.md](AGENTS.md).
 
 ## Credits
 

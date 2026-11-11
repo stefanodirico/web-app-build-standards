@@ -1,6 +1,6 @@
 # Security
 
-Labels: [Saved] from Stefano's saved reels and links; [Researched] checked against sources on 3 November 2026; [Practice] good practice; ⚠️ verify before relying on it. This is a working checklist, not a security audit.
+Labels: [Saved] from saved reels and links; [Researched] checked against sources on 3 November 2026; [Practice] good practice; ⚠️ verify before relying on it. This is a working checklist, not a security audit.
 
 ## Five one-minute checks [Saved]
 

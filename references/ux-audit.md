@@ -1,6 +1,6 @@
 # UX audit (132 items)
 
-Source: Stefano's saved UX audit prompt. Transcribed in full; only spelling was changed to British English (colour, centred, postcode) and headings to sentence case.
+Source: a saved UX audit prompt. Transcribed in full; only spelling was changed to British English (colour, centred, postcode) and headings to sentence case.
 
 ## Rules for running it
 

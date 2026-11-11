@@ -1,6 +1,6 @@
 # Legal and compliance (UK, EU, Spain, US)
 
-Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026; marketing email and minimum age: 11 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
+Labels: **[Saved]** from saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026; marketing email and minimum age: 11 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
 
 This is a working checklist, not legal advice. Have a solicitor check anything high-risk, particularly payments, health data, children's data or user-generated content. Ask before making legal claims about a specific project.
 
@@ -83,7 +83,7 @@ For a quick scan of an existing codebase, run the full audit prompt in [complian
 ### Minimum age and parental consent (GDPR Article 8) [Researched]
 - [ ] If you rely on consent to process a child's data for an online service offered directly to children, a child below the national "digital age of consent" needs a parent's consent, and you must make reasonable efforts to verify it.
 - [ ] The default is 16. Countries can lower it to 13. Thresholds found in November 2026: UK 13; Spain, Italy, Austria 14; France, Greece, Czech Republic 15; Germany, Ireland, Netherlands 16; Belgium, Denmark, Sweden, Finland, Portugal 13. ⚠️ Sources disagree on a few countries, and Spain has a draft law to raise its age to 16, so recheck before launch.
-- [ ] Default for the sign-up age screen in Stefano's projects:
+- [ ] Default for the sign-up age screen in the owner's projects:
   - UK only: 13.
   - Spain only: 14.
   - Several EU countries, or UK and EU together, with no per-country logic: 16. It is the highest threshold, so it is valid everywhere.

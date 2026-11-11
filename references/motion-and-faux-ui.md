@@ -1,6 +1,6 @@
 # Motion and faux UI
 
-[Distilled] from Emil Kowalski's skills (motion) and Benji Taylor's Stageshow (faux product UI). For depth, install them (see [companion-skills.md](companion-skills.md)). [Saved] marks material from Stefano's saved reels.
+[Distilled] from Emil Kowalski's skills (motion) and Benji Taylor's Stageshow (faux product UI). For depth, install them (see [companion-skills.md](companion-skills.md)). [Saved] marks material from saved reels.
 
 ## Should it animate at all?
 

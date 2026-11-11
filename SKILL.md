@@ -1,6 +1,6 @@
 ---
 name: web-app-build-standards
-description: Stefano's standards for planning, building, reviewing and launching websites and apps. Covers UK, EU and US legal checks, a 132-item UX audit, design that doesn't look AI-generated, security for vibe-coded apps, domain setup, app store rules and a launch checklist. Use for any website, web app, mobile app, landing page, UI, front-end or coding task, and whenever asked to audit, review, harden or launch one.
+description: Standards for planning, building, reviewing and launching websites and apps. Covers UK, EU and US legal checks, a 132-item UX audit, design that doesn't look AI-generated, security for vibe-coded apps, domain setup, app store rules and a launch checklist. Use for any website, web app, mobile app, landing page, UI, front-end or coding task, and whenever asked to audit, review, harden or launch one.
 ---
 
 # Website and app build standards

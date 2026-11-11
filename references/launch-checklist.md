@@ -1,6 +1,6 @@
 # Launch checklist
 
-Run before any site or app goes live, and again after big changes. Mark each item passed, failed, N/A or UNSURE, with evidence. Labels: [Saved] from Stefano's saved reels; ⚠️ verify before relying on it.
+Run before any site or app goes live, and again after big changes. Mark each item passed, failed, N/A or UNSURE, with evidence. Labels: [Saved] from saved reels; ⚠️ verify before relying on it.
 
 ## Pre-launch checklist [Saved]
 
@@ -34,7 +34,7 @@ From the @yatesvids and @buildwithfrancis reels.
 - [ ] Accessibility issues fixed
 - [ ] H1 and heading structure correct ⚠️ label partly obscured in the source reel
 
-Standard to pick, from a screenshot Stefano saved: WCAG AA (the default), WCAG AA plus colour-blind-safe charts, or WCAG AAA contrast for body text (7:1 instead of 4.5:1). Build to WCAG 2.2 AA unless the project says otherwise.
+Standard to pick, from a saved screenshot: WCAG AA (the default), WCAG AA plus colour-blind-safe charts, or WCAG AAA contrast for body text (7:1 instead of 4.5:1). Build to WCAG 2.2 AA unless the project says otherwise.
 
 ### Search and sharing
 - [ ] No vercel.app or preview domain

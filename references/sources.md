@@ -1,6 +1,6 @@
 # Sources
 
-## Stefano's saved material
+## Saved material
 - "How to protect your vibe coded app from getting sued" guide (the six legal holes, with fix prompts), from the skool.com/raycfu community, saved as a text file with six sketch images (November 2026)
 - Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction; IDOR and logout tests), @dr.erinjacques (Google Fonts and the GDPR, with a self-hosting prompt), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen; 20 animation rules, from a screenshot), @paigethepm (staging environments and preview branches), @tinchosms (engineering topics), and screenshots of "20 cool features Claude can add to your website in one afternoon" and "20 (hidden) vibecoded website giveaways" (creators not visible)
 - UX audit prompt (132 items), saved as a text file

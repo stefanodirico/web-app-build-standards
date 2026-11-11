@@ -60,7 +60,7 @@ Lead with what blocks launch or the main user journey. Sort findings HIGH (block
 
 ## UX audit (132 items)
 
-Source: Stefano's saved UX audit prompt. Transcribed in full; only spelling was changed to British English (colour, centred, postcode) and headings to sentence case.
+Source: a saved UX audit prompt. Transcribed in full; only spelling was changed to British English (colour, centred, postcode) and headings to sentence case.
 
 ### Rules for running it
 
@@ -304,7 +304,7 @@ Things inside the same border or background read as one group.
 
 ## Design and craft
 
-Labels: [Saved] from Stefano's saved reels; [Researched] checked against sources on 3 November 2026; [Practice] good practice; [Distilled] summarised from a companion skill (see the "Companion skills and design references" section).
+Labels: [Saved] from saved reels; [Researched] checked against sources on 3 November 2026; [Practice] good practice; [Distilled] summarised from a companion skill (see the "Companion skills and design references" section).
 
 ### The rule that overrides the rest
 
@@ -451,7 +451,7 @@ From the @charles.unemployed "Removing AI slop" reel, starting from the verifica
 
 ## Motion and faux UI
 
-[Distilled] from Emil Kowalski's skills (motion) and Benji Taylor's Stageshow (faux product UI). For depth, install them (see the "Companion skills and design references" section). [Saved] marks material from Stefano's saved reels.
+[Distilled] from Emil Kowalski's skills (motion) and Benji Taylor's Stageshow (faux product UI). For depth, install them (see the "Companion skills and design references" section). [Saved] marks material from saved reels.
 
 ### Should it animate at all?
 
@@ -545,7 +545,7 @@ For hero images, feature cards and demo animations that show the product.
 
 ## Security
 
-Labels: [Saved] from Stefano's saved reels and links; [Researched] checked against sources on 3 November 2026; [Practice] good practice; ⚠️ verify before relying on it. This is a working checklist, not a security audit.
+Labels: [Saved] from saved reels and links; [Researched] checked against sources on 3 November 2026; [Practice] good practice; ⚠️ verify before relying on it. This is a working checklist, not a security audit.
 
 ### Five one-minute checks [Saved]
 
@@ -644,7 +644,7 @@ From the @tinchosms reel "Who's gonna tell Vibecoders about...", a scrolling lis
 
 ## Legal and compliance (UK, EU, Spain, US)
 
-Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026; marketing email and minimum age: 11 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
+Labels: **[Saved]** from saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026; marketing email and minimum age: 11 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
 
 This is a working checklist, not legal advice. Have a solicitor check anything high-risk, particularly payments, health data, children's data or user-generated content. Ask before making legal claims about a specific project.
 
@@ -727,7 +727,7 @@ For a quick scan of an existing codebase, run the full audit prompt in the "Comp
 #### Minimum age and parental consent (GDPR Article 8) [Researched]
 - [ ] If you rely on consent to process a child's data for an online service offered directly to children, a child below the national "digital age of consent" needs a parent's consent, and you must make reasonable efforts to verify it.
 - [ ] The default is 16. Countries can lower it to 13. Thresholds found in November 2026: UK 13; Spain, Italy, Austria 14; France, Greece, Czech Republic 15; Germany, Ireland, Netherlands 16; Belgium, Denmark, Sweden, Finland, Portugal 13. ⚠️ Sources disagree on a few countries, and Spain has a draft law to raise its age to 16, so recheck before launch.
-- [ ] Default for the sign-up age screen in Stefano's projects:
+- [ ] Default for the sign-up age screen in the owner's projects:
   - UK only: 13.
   - Spain only: 14.
   - Several EU countries, or UK and EU together, with no per-country logic: 16. It is the highest threshold, so it is valid everywhere.
@@ -956,7 +956,7 @@ Check by hand: open user A's record URL as user B, and paste a private URL after
 
 ## Launch checklist
 
-Run before any site or app goes live, and again after big changes. Mark each item passed, failed, N/A or UNSURE, with evidence. Labels: [Saved] from Stefano's saved reels; ⚠️ verify before relying on it.
+Run before any site or app goes live, and again after big changes. Mark each item passed, failed, N/A or UNSURE, with evidence. Labels: [Saved] from saved reels; ⚠️ verify before relying on it.
 
 ### Pre-launch checklist [Saved]
 
@@ -990,7 +990,7 @@ From the @yatesvids and @buildwithfrancis reels.
 - [ ] Accessibility issues fixed
 - [ ] H1 and heading structure correct ⚠️ label partly obscured in the source reel
 
-Standard to pick, from a screenshot Stefano saved: WCAG AA (the default), WCAG AA plus colour-blind-safe charts, or WCAG AAA contrast for body text (7:1 instead of 4.5:1). Build to WCAG 2.2 AA unless the project says otherwise.
+Standard to pick, from a saved screenshot: WCAG AA (the default), WCAG AA plus colour-blind-safe charts, or WCAG AAA contrast for body text (7:1 instead of 4.5:1). Build to WCAG 2.2 AA unless the project says otherwise.
 
 #### Search and sharing
 - [ ] No vercel.app or preview domain
@@ -1488,7 +1488,7 @@ DESIGN.md is a plain markdown design system file (colours, type, spacing, compon
 
 ## Sources
 
-### Stefano's saved material
+### Saved material
 - "How to protect your vibe coded app from getting sued" guide (the six legal holes, with fix prompts), from the skool.com/raycfu community, saved as a text file with six sketch images (November 2026)
 - Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction; IDOR and logout tests), @dr.erinjacques (Google Fonts and the GDPR, with a self-hosting prompt), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen; 20 animation rules, from a screenshot), @paigethepm (staging environments and preview branches), @tinchosms (engineering topics), and screenshots of "20 cool features Claude can add to your website in one afternoon" and "20 (hidden) vibecoded website giveaways" (creators not visible)
 - UX audit prompt (132 items), saved as a text file

@@ -1,6 +1,6 @@
 # Design and craft
 
-Labels: [Saved] from Stefano's saved reels; [Researched] checked against sources on 3 November 2026; [Practice] good practice; [Distilled] summarised from a companion skill (see [companion-skills.md](companion-skills.md)).
+Labels: [Saved] from saved reels; [Researched] checked against sources on 3 November 2026; [Practice] good practice; [Distilled] summarised from a companion skill (see [companion-skills.md](companion-skills.md)).
 
 ## The rule that overrides the rest
 
