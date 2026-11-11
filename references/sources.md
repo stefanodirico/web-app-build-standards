@@ -35,6 +35,9 @@
 - [UK accessibility approach (Taylor Wessing)](https://www.taylorwessing.com/en/interface/2022/the-european-accessibility-act/what-is-the-uks-approach-to-accessibility)
 - [UK accessibility law (Scope)](https://business.scope.org.uk/uk-law-and-digital-accessibility-what-it-means-for-your-organisation/)
 - [The Children's Code: background (ICO)](https://ico.org.uk/about-the-ico/what-we-do/background-to-the-children-s-code/)
+- [ICO: direct marketing using electronic mail (updated 28 April 2026)](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-direct-marketing-using-electronic-mail/)
+- [ICO guidance on opt-outs at collection (Mills and Reeve)](https://www.mills-reeve.com/blogs/charity/may-2026/electronic-marketing-rules-for-charities-clarified-in-new-ico-guidance/)
+- [PECR regulation 22 and the charitable purposes soft opt-in (Osborne Clarke)](https://marketinglaw.osborneclarke.com/advertising-regulation/new-consent-free-marketing-route-for-charities-ico-publishes-guidance-on-the-charitable-purposes-soft-opt-in/)
 - [ICO Reddit and Imgur decisions (Chambers)](https://chambers.com/articles/children-s-privacy-enforcement-intensifies-lessons-from-ico-s-reddit-and-imgur-decisions)
 
 ## EU and Spain
@@ -48,6 +51,14 @@
 - [AI Omnibus (Gibson Dunn)](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/)
 - [AEPD cookie guide summary (ECIJA)](https://www.ecija.com/actualidad-insights/guia-aepd-uso-cookies/)
 - [LSSI and cookies (Atico34)](https://protecciondatos-lopd.com/empresas/?p=36036)
+- [AEPD legal report on LSSI Article 21 and tacit consent](https://www.aepd.es/es/documento/2018-0164.pdf)
+- [AEPD resolution on LSSI Article 21 opt-out address](https://www.aepd.es/documento/a-00180-2014.pdf)
+- [Business databases and LSSI Article 21 (Fieldfisher)](https://www.fieldfisher.com/es-es/locations/spain/insights/bases-datos-empresariales)
+- [AEPD fines Nude Project €20,000 (Marketing4eCommerce)](https://marketing4ecommerce.net/multa-nude-project/)
+- [GDPR Article 8 thresholds by country (GDPRLocal)](https://gdprlocal.com/dealing-with-childrens-data/)
+- [GDPR Article 8 thresholds and legal bases (Privacy skills reference)](https://www.skills.lc/mukul975/Privacy-Data-Protection-Skills/mukul975-privacy-data-protection-skills-skills-privacy-managing-consent-for-children-skill-md)
+- [Spain's age of consent and draft law (Linklaters)](https://www.linklaters.com/en/insights/data-protected/data-protected---spain)
+- [EU Kids Act proposal and Spain's 14-year threshold (Osborne Clarke, October 2026)](https://www.osborneclarke.com/insights/eu-kids-acts-proposed-new-online-child-protection-rules-signal-legal-reforms-spain)
 
 ## US (checked 10 November 2026)
 - [SB 690 signed: CIPA reform (WilmerHale)](https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/20261006-cipa-reform-signed-into-law)

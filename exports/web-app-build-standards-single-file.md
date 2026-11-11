@@ -595,7 +595,7 @@ Rules: enforce on the server or database, never only in the UI. Anything not lis
 
 ## Legal and compliance (UK, EU, Spain, US)
 
-Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
+Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026; marketing email and minimum age: 11 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
 
 This is a working checklist, not legal advice. Have a solicitor check anything high-risk, particularly payments, health data, children's data or user-generated content. Ask before making legal claims about a specific project.
 
@@ -654,12 +654,37 @@ For a quick scan of an existing codebase, run the full audit prompt in the "Comp
 - [ ] A tick-box asking users to state their age may not be enough. The ICO has criticised this on services with user interaction and user-generated content.
 - [ ] If users can post or interact, check the Online Safety Act 2023 and Ofcom's guidance.
 
+#### Marketing email and texts (PECR regulation 22) [Researched]
+- [ ] To individuals (including sole traders and partnerships), marketing email or texts need prior consent, unless the soft opt-in applies.
+- [ ] Soft opt-in: you got the details directly from the person in the course of a sale or negotiations for a sale, you only market your own similar products or services, and you gave a simple way to refuse when you collected the details and in every message since.
+- [ ] Put a prominent opt-out or an unticked opt-in box on the form itself. The ICO says an opt-out hidden in the privacy policy isn't enough.
+- [ ] For waitlists and newsletter sign-ups, get explicit consent with an unticked box and keep a record of it. ⚠️ Whether a waitlist sign-up counts as "negotiations for a sale" for the soft opt-in is untested; don't rely on it. [Practice]
+- [ ] Every message must say who it is from and give a valid address or link to opt out, free of charge. Act on opt-outs promptly.
+- [ ] Emails to company addresses (limited companies, LLPs) don't need PECR consent, but you must still identify yourself and offer an opt-out, and UK GDPR still applies to named people's addresses.
+- [ ] Since 5 February 2026 there is also a charitable purposes soft opt-in, for registered charities only.
+- [ ] PECR fines are now up to £17.5 million (about €20 million ⚠️ approximate conversion) or 4% of global turnover.
+
 ### EU rules [Researched]
 
 #### Cookies and data protection
 - [ ] Apply the GDPR and the national ePrivacy rules. A UK company targeting EU users may still be caught. ⚠️ Confirm for the specific project.
 - [ ] Do not build to the proposed Digital Omnibus cookie or GDPR changes. As of October 2026 the proposal was still at first reading. ⚠️ Recheck before launch.
 - [ ] Consider whether an EU representative is needed under GDPR Article 27 if there is no EU establishment. ⚠️ Background knowledge.
+
+#### Marketing email (ePrivacy Directive Article 13)
+- [ ] Same shape as the UK: prior consent for marketing email to individuals, with a soft opt-in for existing customers about similar products, and an opt-out at collection and in every message. ⚠️ Background knowledge; rules for business addresses vary by country, so check each market.
+- [ ] Spain is stricter: see the Spain section below.
+
+#### Minimum age and parental consent (GDPR Article 8) [Researched]
+- [ ] If you rely on consent to process a child's data for an online service offered directly to children, a child below the national "digital age of consent" needs a parent's consent, and you must make reasonable efforts to verify it.
+- [ ] The default is 16. Countries can lower it to 13. Thresholds found in November 2026: UK 13; Spain, Italy, Austria 14; France, Greece, Czech Republic 15; Germany, Ireland, Netherlands 16; Belgium, Denmark, Sweden, Finland, Portugal 13. ⚠️ Sources disagree on a few countries, and Spain has a draft law to raise its age to 16, so recheck before launch.
+- [ ] Default for the sign-up age screen in Stefano's projects:
+  - UK only: 13.
+  - Spain only: 14.
+  - Several EU countries, or UK and EU together, with no per-country logic: 16. It is the highest threshold, so it is valid everywhere.
+  - Below the threshold, either block sign-up or collect verified parental consent. Don't just tick a box.
+- [ ] Article 8 is a consent rule, not a ban: if the lawful basis is something else (such as contract), the threshold works differently. ⚠️ Get advice before relying on that.
+- [ ] Separately, the UK Children's Code and the Online Safety Act protect everyone under 18. Passing the age screen doesn't switch them off. If the app is built for under-18s, skip the age gate and design for the Children's Code, with legal review.
 
 #### Third-party fonts [Saved]
 - [ ] Self-host every font. Loading from fonts.googleapis.com or fonts.gstatic.com sends each visitor's IP address to Google before they have agreed to anything. Vibe-coded apps do this by default.
@@ -693,6 +718,11 @@ For a quick scan of an existing codebase, run the full audit prompt in the "Comp
 - [ ] Follow Article 22.2 of the LSSI (Ley 34/2002) on cookies and the AEPD's cookie guide. Provide clear information and get valid consent before non-exempt cookies are used.
 - [ ] Block non-exempt cookies until consent. ⚠️ Based on a practitioner source, so check the current AEPD guide.
 - [ ] Check the aviso legal details required by Article 10 of the LSSI. ⚠️ Not fully verified here.
+- [ ] Marketing email (LSSI Article 21) [Researched]: prohibited unless the person asked for it or expressly agreed beforehand. Tacit consent isn't accepted. The AEPD applies this to companies' addresses as well as individuals'.
+- [ ] The only exception: an existing contract with the person, marketing your own products or services similar to what they bought.
+- [ ] Offer a simple, free opt-out when collecting the address and in every email. The email must include an email address or other valid electronic address for opting out.
+- [ ] The AEPD fines this regularly, from a few thousand euros for continuing after an unsubscribe to €20,000 for sending without consent.
+- [ ] Minimum age for consent: 14 (Organic Law 3/2018, Article 7). See the EU minimum age section above.
 - [ ] Check Spanish consumer law for any sales, including the withdrawal function. ⚠️ Not fully verified here.
 - [ ] Add other countries only after checking their local rules.
 
@@ -798,13 +828,13 @@ Check: in the tool's dashboard, confirm the project-level privacy setting matche
 ```text
 Add a neutral age screen to the sign-up flow:
 1. Ask for date of birth with an empty date picker. Do not pre-fill it or say what age is required.
-2. If the user is under [13 for a US-only app; confirm the UK and EU threshold with me first], do not create the account and do not store the date of birth, email or anything else they entered. Show a polite message that the app isn't available for their age.
+2. Use this minimum age: [13 for UK-only or US-only; 14 for Spain-only; 16 if the app serves several EU countries, or the UK and EU together, without per-country rules]. If the user is under it, do not create the account and do not store the date of birth, email or anything else they entered. Show a polite message that the app isn't available for their age.
 3. Set a cookie or local storage flag so they can't immediately go back and enter a different date.
 4. If they are old enough, continue sign-up and store only an "age verified" flag unless the app needs the full date.
 Also list anything in the landing page, app store listing or marketing copy that could look aimed at children.
 ```
 
-If the app is meant for children, stop and get a lawyer. In the UK, the Children's Code applies to under-18s likely to use the service, and a self-declared age may not be enough.
+The defaults come from GDPR Article 8 and COPPA; see the minimum age section in the "Legal and compliance (UK, EU, Spain, US)" section. Below the minimum, the alternative to blocking is verified parental consent. If the app is meant for under-18s (including 14 to 18-year-olds), don't use this gate: design for the UK Children's Code and get legal review. A self-declared age may not be enough there.
 
 ### 5. Marketing email
 
@@ -816,7 +846,10 @@ For each marketing template:
 3. Add List-Unsubscribe and List-Unsubscribe-Post: List-Unsubscribe=One-Click headers if the provider supports them.
 4. Make sure the subject line isn't misleading and the from name is the real business name.
 Then check that unsubscribing removes the person from every marketing list and that the send code skips them. Show me where that check happens.
+Finally, check how addresses get onto marketing lists. Every sign-up, waitlist or checkout form that adds someone to marketing must have an unticked opt-in box (or, for existing customers only, a clear opt-out at the point of collection), and the database must store when and how each person agreed. List any form that adds people to marketing without this.
 ```
+
+UK and EU rules need consent before the first marketing email, not just an unsubscribe link afterwards; Spain accepts no tacit consent at all. See the marketing email sections in the "Legal and compliance (UK, EU, Spain, US)" section.
 
 Check: send the launch email to yourself first and click unsubscribe.
 
@@ -941,7 +974,8 @@ From the "How to protect your vibe coded app from getting sued" guide and the @d
 - [ ] Fonts load from your own app, not Google or another font CDN
 - [ ] Session replay masks every input and loads only after consent
 - [ ] Consent banner has Accept and Reject buttons that are equally easy to click
-- [ ] Sign-up has a neutral age screen if children could use it; under-13s blocked without storing their data (US), Children's Code applied for under-18s (UK)
+- [ ] Sign-up has a neutral age screen if children could use it, with the minimum age set to 13 (UK or US only), 14 (Spain only) or 16 (several EU countries); anyone younger is blocked without storing their data; Children's Code applied for under-18s (UK)
+- [ ] Marketing email has recorded opt-in consent (unticked box), or the soft opt-in for existing customers
 - [ ] Every marketing email has a postal address and a working unsubscribe link; unsubscribes honoured within 10 business days
 - [ ] Checkout shows price, frequency, auto-renewal and how to cancel next to the pay button
 - [ ] Users can cancel online as easily as they signed up; consent records saved for every subscriber
@@ -1077,6 +1111,9 @@ DESIGN.md is a plain markdown design system file (colours, type, spacing, compon
 - [UK accessibility approach (Taylor Wessing)](https://www.taylorwessing.com/en/interface/2022/the-european-accessibility-act/what-is-the-uks-approach-to-accessibility)
 - [UK accessibility law (Scope)](https://business.scope.org.uk/uk-law-and-digital-accessibility-what-it-means-for-your-organisation/)
 - [The Children's Code: background (ICO)](https://ico.org.uk/about-the-ico/what-we-do/background-to-the-children-s-code/)
+- [ICO: direct marketing using electronic mail (updated 28 April 2026)](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-direct-marketing-using-electronic-mail/)
+- [ICO guidance on opt-outs at collection (Mills and Reeve)](https://www.mills-reeve.com/blogs/charity/may-2026/electronic-marketing-rules-for-charities-clarified-in-new-ico-guidance/)
+- [PECR regulation 22 and the charitable purposes soft opt-in (Osborne Clarke)](https://marketinglaw.osborneclarke.com/advertising-regulation/new-consent-free-marketing-route-for-charities-ico-publishes-guidance-on-the-charitable-purposes-soft-opt-in/)
 - [ICO Reddit and Imgur decisions (Chambers)](https://chambers.com/articles/children-s-privacy-enforcement-intensifies-lessons-from-ico-s-reddit-and-imgur-decisions)
 
 ### EU and Spain
@@ -1090,6 +1127,14 @@ DESIGN.md is a plain markdown design system file (colours, type, spacing, compon
 - [AI Omnibus (Gibson Dunn)](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/)
 - [AEPD cookie guide summary (ECIJA)](https://www.ecija.com/actualidad-insights/guia-aepd-uso-cookies/)
 - [LSSI and cookies (Atico34)](https://protecciondatos-lopd.com/empresas/?p=36036)
+- [AEPD legal report on LSSI Article 21 and tacit consent](https://www.aepd.es/es/documento/2018-0164.pdf)
+- [AEPD resolution on LSSI Article 21 opt-out address](https://www.aepd.es/documento/a-00180-2014.pdf)
+- [Business databases and LSSI Article 21 (Fieldfisher)](https://www.fieldfisher.com/es-es/locations/spain/insights/bases-datos-empresariales)
+- [AEPD fines Nude Project €20,000 (Marketing4eCommerce)](https://marketing4ecommerce.net/multa-nude-project/)
+- [GDPR Article 8 thresholds by country (GDPRLocal)](https://gdprlocal.com/dealing-with-childrens-data/)
+- [GDPR Article 8 thresholds and legal bases (Privacy skills reference)](https://www.skills.lc/mukul975/Privacy-Data-Protection-Skills/mukul975-privacy-data-protection-skills-skills-privacy-managing-consent-for-children-skill-md)
+- [Spain's age of consent and draft law (Linklaters)](https://www.linklaters.com/en/insights/data-protected/data-protected---spain)
+- [EU Kids Act proposal and Spain's 14-year threshold (Osborne Clarke, October 2026)](https://www.osborneclarke.com/insights/eu-kids-acts-proposed-new-online-child-protection-rules-signal-legal-reforms-spain)
 
 ### US (checked 10 November 2026)
 - [SB 690 signed: CIPA reform (WilmerHale)](https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/20261006-cipa-reform-signed-into-law)

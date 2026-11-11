@@ -56,13 +56,13 @@ Check: in the tool's dashboard, confirm the project-level privacy setting matche
 ```text
 Add a neutral age screen to the sign-up flow:
 1. Ask for date of birth with an empty date picker. Do not pre-fill it or say what age is required.
-2. If the user is under [13 for a US-only app; confirm the UK and EU threshold with me first], do not create the account and do not store the date of birth, email or anything else they entered. Show a polite message that the app isn't available for their age.
+2. Use this minimum age: [13 for UK-only or US-only; 14 for Spain-only; 16 if the app serves several EU countries, or the UK and EU together, without per-country rules]. If the user is under it, do not create the account and do not store the date of birth, email or anything else they entered. Show a polite message that the app isn't available for their age.
 3. Set a cookie or local storage flag so they can't immediately go back and enter a different date.
 4. If they are old enough, continue sign-up and store only an "age verified" flag unless the app needs the full date.
 Also list anything in the landing page, app store listing or marketing copy that could look aimed at children.
 ```
 
-If the app is meant for children, stop and get a lawyer. In the UK, the Children's Code applies to under-18s likely to use the service, and a self-declared age may not be enough.
+The defaults come from GDPR Article 8 and COPPA; see the minimum age section in [legal-and-compliance.md](legal-and-compliance.md). Below the minimum, the alternative to blocking is verified parental consent. If the app is meant for under-18s (including 14 to 18-year-olds), don't use this gate: design for the UK Children's Code and get legal review. A self-declared age may not be enough there.
 
 ## 5. Marketing email
 
@@ -74,7 +74,10 @@ For each marketing template:
 3. Add List-Unsubscribe and List-Unsubscribe-Post: List-Unsubscribe=One-Click headers if the provider supports them.
 4. Make sure the subject line isn't misleading and the from name is the real business name.
 Then check that unsubscribing removes the person from every marketing list and that the send code skips them. Show me where that check happens.
+Finally, check how addresses get onto marketing lists. Every sign-up, waitlist or checkout form that adds someone to marketing must have an unticked opt-in box (or, for existing customers only, a clear opt-out at the point of collection), and the database must store when and how each person agreed. List any form that adds people to marketing without this.
 ```
+
+UK and EU rules need consent before the first marketing email, not just an unsubscribe link afterwards; Spain accepts no tacit consent at all. See the marketing email sections in [legal-and-compliance.md](legal-and-compliance.md).
 
 Check: send the launch email to yourself first and click unsubscribe.
 

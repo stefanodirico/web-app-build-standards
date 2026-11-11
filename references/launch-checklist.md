@@ -67,7 +67,8 @@ From the "How to protect your vibe coded app from getting sued" guide and the @d
 - [ ] Fonts load from your own app, not Google or another font CDN
 - [ ] Session replay masks every input and loads only after consent
 - [ ] Consent banner has Accept and Reject buttons that are equally easy to click
-- [ ] Sign-up has a neutral age screen if children could use it; under-13s blocked without storing their data (US), Children's Code applied for under-18s (UK)
+- [ ] Sign-up has a neutral age screen if children could use it, with the minimum age set to 13 (UK or US only), 14 (Spain only) or 16 (several EU countries); anyone younger is blocked without storing their data; Children's Code applied for under-18s (UK)
+- [ ] Marketing email has recorded opt-in consent (unticked box), or the soft opt-in for existing customers
 - [ ] Every marketing email has a postal address and a working unsubscribe link; unsubscribes honoured within 10 business days
 - [ ] Checkout shows price, frequency, auto-renewal and how to cancel next to the pay button
 - [ ] Users can cancel online as easily as they signed up; consent records saved for every subscriber

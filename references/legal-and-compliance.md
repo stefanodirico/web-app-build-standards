@@ -1,6 +1,6 @@
 # Legal and compliance (UK, EU, Spain, US)
 
-Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
+Labels: **[Saved]** from Stefano's saved reels and files; **[Researched]** checked against sources on 3 November 2026 (US section: 10 November 2026; marketing email and minimum age: 11 November 2026); **[Practice]** good practice, not a legal rule; **⚠️** weaker source, background knowledge or likely to change, so verify before relying on it.
 
 This is a working checklist, not legal advice. Have a solicitor check anything high-risk, particularly payments, health data, children's data or user-generated content. Ask before making legal claims about a specific project.
 
@@ -59,12 +59,37 @@ For a quick scan of an existing codebase, run the full audit prompt in [complian
 - [ ] A tick-box asking users to state their age may not be enough. The ICO has criticised this on services with user interaction and user-generated content.
 - [ ] If users can post or interact, check the Online Safety Act 2023 and Ofcom's guidance.
 
+### Marketing email and texts (PECR regulation 22) [Researched]
+- [ ] To individuals (including sole traders and partnerships), marketing email or texts need prior consent, unless the soft opt-in applies.
+- [ ] Soft opt-in: you got the details directly from the person in the course of a sale or negotiations for a sale, you only market your own similar products or services, and you gave a simple way to refuse when you collected the details and in every message since.
+- [ ] Put a prominent opt-out or an unticked opt-in box on the form itself. The ICO says an opt-out hidden in the privacy policy isn't enough.
+- [ ] For waitlists and newsletter sign-ups, get explicit consent with an unticked box and keep a record of it. ⚠️ Whether a waitlist sign-up counts as "negotiations for a sale" for the soft opt-in is untested; don't rely on it. [Practice]
+- [ ] Every message must say who it is from and give a valid address or link to opt out, free of charge. Act on opt-outs promptly.
+- [ ] Emails to company addresses (limited companies, LLPs) don't need PECR consent, but you must still identify yourself and offer an opt-out, and UK GDPR still applies to named people's addresses.
+- [ ] Since 5 February 2026 there is also a charitable purposes soft opt-in, for registered charities only.
+- [ ] PECR fines are now up to £17.5 million (about €20 million ⚠️ approximate conversion) or 4% of global turnover.
+
 ## EU rules [Researched]
 
 ### Cookies and data protection
 - [ ] Apply the GDPR and the national ePrivacy rules. A UK company targeting EU users may still be caught. ⚠️ Confirm for the specific project.
 - [ ] Do not build to the proposed Digital Omnibus cookie or GDPR changes. As of October 2026 the proposal was still at first reading. ⚠️ Recheck before launch.
 - [ ] Consider whether an EU representative is needed under GDPR Article 27 if there is no EU establishment. ⚠️ Background knowledge.
+
+### Marketing email (ePrivacy Directive Article 13)
+- [ ] Same shape as the UK: prior consent for marketing email to individuals, with a soft opt-in for existing customers about similar products, and an opt-out at collection and in every message. ⚠️ Background knowledge; rules for business addresses vary by country, so check each market.
+- [ ] Spain is stricter: see the Spain section below.
+
+### Minimum age and parental consent (GDPR Article 8) [Researched]
+- [ ] If you rely on consent to process a child's data for an online service offered directly to children, a child below the national "digital age of consent" needs a parent's consent, and you must make reasonable efforts to verify it.
+- [ ] The default is 16. Countries can lower it to 13. Thresholds found in November 2026: UK 13; Spain, Italy, Austria 14; France, Greece, Czech Republic 15; Germany, Ireland, Netherlands 16; Belgium, Denmark, Sweden, Finland, Portugal 13. ⚠️ Sources disagree on a few countries, and Spain has a draft law to raise its age to 16, so recheck before launch.
+- [ ] Default for the sign-up age screen in Stefano's projects:
+  - UK only: 13.
+  - Spain only: 14.
+  - Several EU countries, or UK and EU together, with no per-country logic: 16. It is the highest threshold, so it is valid everywhere.
+  - Below the threshold, either block sign-up or collect verified parental consent. Don't just tick a box.
+- [ ] Article 8 is a consent rule, not a ban: if the lawful basis is something else (such as contract), the threshold works differently. ⚠️ Get advice before relying on that.
+- [ ] Separately, the UK Children's Code and the Online Safety Act protect everyone under 18. Passing the age screen doesn't switch them off. If the app is built for under-18s, skip the age gate and design for the Children's Code, with legal review.
 
 ### Third-party fonts [Saved]
 - [ ] Self-host every font. Loading from fonts.googleapis.com or fonts.gstatic.com sends each visitor's IP address to Google before they have agreed to anything. Vibe-coded apps do this by default.
@@ -98,6 +123,11 @@ For a quick scan of an existing codebase, run the full audit prompt in [complian
 - [ ] Follow Article 22.2 of the LSSI (Ley 34/2002) on cookies and the AEPD's cookie guide. Provide clear information and get valid consent before non-exempt cookies are used.
 - [ ] Block non-exempt cookies until consent. ⚠️ Based on a practitioner source, so check the current AEPD guide.
 - [ ] Check the aviso legal details required by Article 10 of the LSSI. ⚠️ Not fully verified here.
+- [ ] Marketing email (LSSI Article 21) [Researched]: prohibited unless the person asked for it or expressly agreed beforehand. Tacit consent isn't accepted. The AEPD applies this to companies' addresses as well as individuals'.
+- [ ] The only exception: an existing contract with the person, marketing your own products or services similar to what they bought.
+- [ ] Offer a simple, free opt-out when collecting the address and in every email. The email must include an email address or other valid electronic address for opting out.
+- [ ] The AEPD fines this regularly, from a few thousand euros for continuing after an unsubscribe to €20,000 for sending without consent.
+- [ ] Minimum age for consent: 14 (Organic Law 3/2018, Article 7). See the EU minimum age section above.
 - [ ] Check Spanish consumer law for any sales, including the withdrawal function. ⚠️ Not fully verified here.
 - [ ] Add other countries only after checking their local rules.
 
