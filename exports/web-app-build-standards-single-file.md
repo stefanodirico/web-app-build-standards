@@ -29,8 +29,11 @@ Apply this to every website, app or coding task. Read only the sections the task
 | Launching, or "is it ready?" | the "Launch checklist" section, the "Legal and compliance (UK, EU, Spain, US)" section, and the "App stores (Apple and Google)" section for native apps |
 | "Could we get sued?" or a compliance audit of existing code | the "Compliance audit prompts" section (full audit first, read-only), then the "Legal and compliance (UK, EU, Spain, US)" section |
 | Buying or setting up a domain or email sending | the "Launch checklist" section, domain setup |
+| Building a website, or checking whether one gives away that it was vibe-coded | the "Launch checklist" section, vibe-coded giveaways |
+| Setting up staging or preview deployments, or an app that keeps breaking in production | the "Launch checklist" section, staging and preview environments |
 | Animation, transitions or a product demo | the "Motion and faux UI" section |
 | "What features could we add?" | the "Feature ideas (optional)" section |
+| "What might we be missing?" or "what should I learn next?" | the "Engineering topics" section |
 | Needs more depth or tooling | the "Companion skills and design references" section |
 | Checking where a rule came from | the "Sources" section |
 
@@ -448,7 +451,7 @@ From the @charles.unemployed "Removing AI slop" reel, starting from the verifica
 
 ## Motion and faux UI
 
-[Distilled] from Emil Kowalski's skills (motion) and Benji Taylor's Stageshow (faux product UI). For depth, install them (see the "Companion skills and design references" section).
+[Distilled] from Emil Kowalski's skills (motion) and Benji Taylor's Stageshow (faux product UI). For depth, install them (see the "Companion skills and design references" section). [Saved] marks material from Stefano's saved reels.
 
 ### Should it animate at all?
 
@@ -488,6 +491,35 @@ Every animation needs a reason: spatial consistency, showing a change of state, 
 | No reduced-motion handling | Respect `prefers-reduced-motion`: replace movement with a fade or nothing |
 
 Test gestures (drawers, swipes) on a real phone.
+
+### 20 animation rules [Saved]
+
+From the @charles.unemployed reel "20 Ways to Make Beautiful AI Animations", saved as a screenshot of the list. The rule names are as shown on screen. "How to apply" is [Practice], not from the reel, except for rule 20, whose before and after demo is visible in the screenshot. ⚠️ marks a rule whose short name leaves its meaning open, so check it against the reel if it matters.
+
+Use these only once "Should it animate at all?" says yes. Reduced motion and "never animate keyboard-triggered actions" still apply.
+
+| # | Rule | How to apply |
+|---|---|---|
+| 1 | Ease-out for entrances | Use a strong ease-out curve for anything appearing |
+| 2 | Dropdowns at 150–250ms | Keep dropdowns and selects in this range |
+| 3 | Stagger list rows by 30ms | Use 30 ms for list rows; other groups can use up to 80 ms |
+| 4 | Scale to 0.97 on press | Apply `scale(0.97)` to a pressed button, with 100 to 160 ms timing |
+| 5 | Stretch moving knobs 12% | Stretch a toggle or slider knob by about 12% while it travels ⚠️ |
+| 6 | Stagger as details settle | Bring in secondary details just after the main object lands ⚠️ |
+| 7 | Arcs for object movement | Move objects along a slight curve rather than a straight line |
+| 8 | Pulse to confirm success | Pulse the completed element once, with text or an icon so colour isn't the only signal |
+| 9 | Ease-in-out for moves | Use it for anything already on screen that changes position |
+| 10 | Start popovers at 0.95 | Start from `scale(0.95)` with `opacity: 0` |
+| 11 | Enter from the trigger | Set `transform-origin` to the control that opened it |
+| 12 | Exit to the trigger | Close back towards the same control |
+| 13 | No bounce on everyday UI | Keep overshoot for rare moments, not routine controls |
+| 14 | Don't tween while held | Follow the pointer directly during a drag or press, and animate on release |
+| 15 | Make exits 20% shorter | A 200 ms entrance gets a 160 ms exit |
+| 16 | Overlap old & new states | Start the new state before the old one has gone, so there is no blank gap |
+| 17 | Masks for reveals & colour | Use `clip-path` or a mask to reveal content or sweep a colour change ⚠️ |
+| 18 | Crossfade icons + blur | Swap icons with opacity and a slight blur rather than a hard cut |
+| 19 | Rubber band past bounds | Add increasing resistance past a limit, then spring back on release |
+| 20 | Reuse the same layoutId | Make one object expand instead of swapping in a disconnected replacement. `layoutId` belongs to the Motion library (formerly Framer Motion); other stacks need their own shared-element approach ⚠️ |
 
 ### Faux product UI for marketing pages (Stageshow)
 
@@ -592,6 +624,23 @@ Rules: enforce on the server or database, never only in the UI. Anything not lis
 - [ ] Do not paste live secrets or personal data into AI chats.
 - [ ] Test the main user journeys and failure states before launch.
 - [ ] Set up backups and test a restore.
+
+### Things to keep safe [Saved]
+
+From the @tinchosms reel "Who's gonna tell Vibecoders about...", a scrolling list of engineering topics. Only the safety-related topics are here, grouped by me, with names as shown on screen. The full list is in the "Engineering topics" section. The reel gives names only, so "What safe looks like" is [Practice]. In a security review, mark each row PASS, FAIL, N/A or UNSURE.
+
+| Area | Topics from the reel | What safe looks like |
+|---|---|---|
+| Sign-in | Authentication, Password Hashing, Salting, Hashing vs Encryption, Session Management, JWTs, OAuth, Two-Factor Authentication, Magic Links, Passkeys, Single Sign-On (SSO), Password Reset Flows, Email Verification, Account Lockout, Brute Force Protection, Token Expiration and Refresh, Cookie Flags (HttpOnly, Secure, SameSite) | Prefer an established auth provider. Hash passwords with a modern salted algorithm, and never store them in a reversible form. Keep tokens short-lived, set the cookie flags, and limit attempts on sign-in and reset flows. |
+| Permissions | Authorization, Principle of Least Privilege, Role-Based Access Control, Row-Level Security, IDOR (Insecure Direct Object References), Mass Assignment, Multi-Tenancy, Admin Panels, UUIDs vs Auto-Increment IDs | Check ownership of every record on the server. Accept only the fields you expect, and keep each customer's data separate. Give admin panels stricter access. Unguessable IDs help but never replace a permission check. |
+| Secrets | Environment Variables, Secrets Management, API Keys, Secret Rotation, SSH Keys, .gitignore | Keep secrets out of the browser and git. Limit each key to what it needs, and be able to rotate any key without an outage. |
+| Web attacks | Input Validation, Data Validation on the Server, SQL Injection, XSS (Cross-Site Scripting), CSRF, SSRF (Server-Side Request Forgery), Open Redirects, Path Traversal, Command Injection, File Upload Security, Webhooks, Clickjacking, CORS, Content Security Policy, Security Headers | Validate on the server and use parameterised queries. Escape output. Use allowlists for redirects and server-side requests. Check the type and size of uploads, and store them away from the app. Verify webhook signatures. |
+| Personal data | HTTPS / TLS, Encryption in Transit, Encryption at Rest, Presigned URLs, PII in Logs, Log Retention, Data Retention Policies, Data Privacy (GDPR), Data Export and Deletion Requests | Use HTTPS everywhere and encrypt stored sensitive data. Keep file links short-lived and personal data out of logs. Set retention periods, and be able to export or delete one person's data (see the "Legal and compliance (UK, EU, Spain, US)" section). |
+| Payments | PCI Compliance, Payment Webhooks, Refunds and Chargebacks, Money Handling (Never Use Floats) | Never let raw card details touch your servers: use a payment provider's hosted checkout. Verify payment webhooks, and make sure a repeated one can't charge or credit twice. Store money in whole minor units, such as pence or cents. |
+| Abuse and cost | Rate Limiting, Bot Protection, CAPTCHA, DDoS Protection, WAF (Web Application Firewall), Firewalls, VPCs, Spam and Abuse Prevention, Content Moderation, Third-Party API Limits, Cost Monitoring | Limit public and costly endpoints. Expose only the services that must be public. Set spending alerts and caps, and have a way to report and remove harmful content. |
+| AI features | Prompt Injection, LLM API Costs, Token Limits, Evaluating AI Output | Treat user and retrieved content as untrusted. Don't let model output trigger a sensitive action without a server-side check. Set per-user limits and a spending cap. |
+| AI-written code and dependencies | Reviewing AI-Generated Code, Hallucinated Dependencies, Dependency Vulnerabilities, Supply Chain Attacks, Lockfiles, Dependency Pinning, Security Scanning (SAST / DAST), Penetration Testing, OWASP Top 10, Code Review | Check that every package an AI adds is real and is the one you meant. Commit lockfiles, scan before launch, and have someone review changes to sign-in, permissions and payments. |
+| Recovery | Backups, Point-in-Time Recovery, Testing Backup Restores, Disaster Recovery, Rollbacks, Audit Logs, Monitoring, Uptime Monitoring, Alerting, SSL Certificate Renewal, Domain Names | Test a real restore and know how to roll back a release. Log admin and sensitive actions. Alert someone when things fail, and auto-renew certificates and domains. |
 
 ## Legal and compliance (UK, EU, Spain, US)
 
@@ -983,6 +1032,48 @@ From the "How to protect your vibe coded app from getting sued" guide and the @d
 - [ ] Privacy policy and terms linked in the footer and at sign-up
 - [ ] User B can't open user A's record by URL, and a logged-out URL no longer loads (see the "Security" section)
 
+### Vibe-coded giveaways to avoid and fix [Saved]
+
+From a screenshot of a reel, "20 (hidden) vibecoded website giveaways" (creator not visible). Avoid these while building, and fix any you find on an existing site. The giveaway names are as shown on screen, and the fixes are [Practice]. ⚠️ Items 4, 13, 16 and 20 were cut off or unclear in the screenshot, so the wording in brackets or the fix is a best reading.
+
+| # | Giveaway | Fix |
+|---|---|---|
+| 1 | vercel.app url | Move to a real domain (see domain setup below) |
+| 2 | viewsource empty | Pre-render or server-render the main content so it is in the page's HTML |
+| 3 | no 404 page | Add a custom 404 page with a route home, and return a real 404 status |
+| 4 | vite + react browser [tab title] | Replace the template's default tab title and favicon ⚠️ |
+| 5 | same page titles | Give each page its own specific title |
+| 6 | no meta desc | Write a meta description for each page |
+| 7 | no og:image | Add an Open Graph image and check the social preview |
+| 8 | no structured data | Add JSON-LD where it fits, and make it match what the page shows |
+| 9 | multiple H1's | Use one H1 per page |
+| 10 | no H1's | Add one H1 that says what the page is |
+| 11 | no canonical tag | Add a canonical URL to each page, using the real domain |
+| 12 | no llms.txt | Optional: add one if you want a summary for AI tools. ⚠️ It is a proposed convention, not an agreed standard, and its benefit is unproven as far as I know |
+| 13 | AI blocked robots.t[xt] | Check `robots.txt` and any host or CDN bot settings, then allow or block AI crawlers on purpose ⚠️ |
+| 14 | no favicon | Add a custom favicon |
+| 15 | no sitemap.xml | Publish one and submit it in Google Search Console |
+| 16 | no lang attribut[e] | Set the page language, such as `<html lang="en-GB">` ⚠️ |
+| 17 | missing alt text | Add alt text to meaningful images, and empty alt text to decorative ones |
+| 18 | source maps | Don't expose production source maps publicly |
+| 19 | console errors | Fix them, and check the console on every main page |
+| 20 | massive JS bundl[e] | Split code by route and remove unused dependencies. The screenshot shows no target size ⚠️ |
+
+### Staging and preview environments [Saved]
+
+From the @paigethepm reel. If a vibe-coded app keeps breaking, ask whether you are "testing in prod": pushing code live to everyone and testing it there.
+
+- **Staging:** a production-like environment, separate from production, for testing new features and bug fixes.
+- **Setting it up:** this depends on your tools. You usually want a staging branch in GitHub and a staging environment at your hosting provider, such as Vercel, Bolt, Lovable or Cloudflare Workers. ⚠️ The reel gives no steps, so check each tool's current documentation.
+- **Quicker option when you're small:** preview branches. The reel names Vercel as doing this well: they show what a deployment will look like before it goes to production.
+
+Add when setting it up [Practice]:
+- [ ] Test new features and bug fixes on staging or a preview before production.
+- [ ] Give staging its own database and keys. A preview connected to the production database is not a safe test.
+- [ ] Never use real personal data for testing (see the "Security" section).
+- [ ] Restrict access to staging and preview URLs and keep them out of search engines. ⚠️ Settings vary by host.
+- [ ] Treat preview URLs as test addresses only. The live site still needs a real domain.
+
 ### Domain setup [Saved]
 
 From the @danielwelsh_routiq reel ("You bought the domain. Now what?"). About 10 minutes in total.
@@ -999,6 +1090,8 @@ Add for each sending subdomain [Practice]: SPF, DKIM and DMARC records from the 
 - [ ] Legal pages match what the site or app actually does.
 - [ ] A real browser check confirms no non-essential tracker fires before consent.
 - [ ] Automated accessibility scan and manual keyboard and screen reader test completed. Automated tools alone are not enough.
+- [ ] The latest changes were tested on staging or a preview before going live.
+- [ ] Every vibe-coded giveaway has been fixed, marked N/A or kept on purpose, with the reason noted.
 - [ ] All ⚠️ items relevant to this project have been verified.
 - [ ] Any remaining gaps have been reported plainly.
 
@@ -1047,6 +1140,325 @@ Source: a reel screenshot, "20 cool features Claude can add to your website in o
 
 UK rules in force since 5 February 2026 include an exception for remembering appearance preferences such as language or dark mode (the "Legal and compliance (UK, EU, Spain, US)" section).
 
+## Engineering topics
+
+[Saved] From the @tinchosms reel "Who's gonna tell Vibecoders about...". This is the full list of 312 topics in the reel's order, with names as shown on screen, including US spellings. The reel gives names only, with no advice.
+
+Use it to spot what a project might be missing, or what to learn next. It is a prompt rather than a checklist, because most projects won't need every topic. The safety-related topics, with guidance, are in the "Security" section.
+
+1. Load Balancing
+2. Rate Limiting
+3. Environment Variables
+4. Secrets Management
+5. Authentication
+6. Authorization
+7. Input Validation
+8. CORS
+9. HTTP Status Codes
+10. Error Handling
+11. Automated Testing
+12. Database Indexing
+13. Database Migrations
+14. Pagination
+15. Backups
+16. Caching
+17. CDNs
+18. Logging
+19. Monitoring
+20. Timeouts
+21. Retries
+22. Exponential Backoff
+23. Idempotency
+24. Git
+25. Circuit Breakers
+26. Reverse Proxies
+27. API Gateways
+28. Docker
+29. CI/CD
+30. Message Queues
+31. HTTPS / TLS
+32. DNS
+33. Password Hashing
+34. Session Management
+35. JWTs
+36. OAuth
+37. Two-Factor Authentication
+38. SQL Injection
+39. XSS (Cross-Site Scripting)
+40. CSRF
+41. Dependency Vulnerabilities
+42. Principle of Least Privilege
+43. Database Transactions
+44. Race Conditions
+45. Connection Pooling
+46. N+1 Queries
+47. Database Normalization
+48. Soft Deletes
+49. Data Validation on the Server
+50. File Upload Security
+51. Webhooks
+52. Background Jobs
+53. Cron Jobs
+54. Cache Invalidation
+55. Read Replicas
+56. Horizontal vs Vertical Scaling
+57. Stateless Services
+58. Health Checks
+59. Graceful Shutdown
+60. Alerting
+61. Distributed Tracing
+62. Structured Logging
+63. Error Tracking
+64. Uptime Monitoring
+65. Feature Flags
+66. Staging Environments
+67. Rollbacks
+68. Blue-Green Deployments
+69. Infrastructure as Code
+70. Code Review
+71. Branching Strategies
+72. Semantic Versioning
+73. API Versioning
+74. API Documentation
+75. Unit vs Integration vs End-to-End Tests
+76. Load Testing
+77. Debugging
+78. Profiling
+79. Time Zones
+80. Character Encoding
+81. Concurrency
+82. Async / Await
+83. Memory Leaks
+84. Cost Monitoring
+85. Disaster Recovery
+86. Data Privacy (GDPR)
+87. Accessibility
+88. Mobile Responsiveness
+89. Performance Budgets
+90. Technical Debt
+91. Reading Documentation
+92. Reading Error Messages
+93. Content Security Policy
+94. Security Headers
+95. Clickjacking
+96. SSRF (Server-Side Request Forgery)
+97. Open Redirects
+98. Path Traversal
+99. Command Injection
+100. Mass Assignment
+101. IDOR (Insecure Direct Object References)
+102. Brute Force Protection
+103. Account Lockout
+104. Password Reset Flows
+105. Email Verification
+106. Magic Links
+107. Passkeys
+108. Single Sign-On (SSO)
+109. Role-Based Access Control
+110. Row-Level Security
+111. API Keys
+112. Token Expiration and Refresh
+113. Cookie Flags (HttpOnly, Secure, SameSite)
+114. Secret Rotation
+115. Audit Logs
+116. Encryption at Rest
+117. Encryption in Transit
+118. Hashing vs Encryption
+119. Salting
+120. Penetration Testing
+121. OWASP Top 10
+122. Bot Protection
+123. CAPTCHA
+124. DDoS Protection
+125. WAF (Web Application Firewall)
+126. Firewalls
+127. VPCs
+128. SSH Keys
+129. Supply Chain Attacks
+130. Lockfiles
+131. Dependency Pinning
+132. License Compliance
+133. SQL vs NoSQL
+134. Primary Keys
+135. Foreign Keys
+136. UUIDs vs Auto-Increment IDs
+137. Unique Constraints
+138. Database Constraints
+139. Joins
+140. Query Plans (EXPLAIN)
+141. ORMs
+142. Raw SQL
+143. Schema Design
+144. Denormalization
+145. Seed Data
+146. Database Locks
+147. Deadlocks
+148. Isolation Levels
+149. ACID
+150. Eventual Consistency
+151. Full-Text Search
+152. Cursor-Based Pagination
+153. Point-in-Time Recovery
+154. Testing Backup Restores
+155. Data Retention Policies
+156. Data Migration Scripts
+157. Zero-Downtime Migrations
+158. Key-Value Stores
+159. Redis
+160. Object Storage
+161. Presigned URLs
+162. Image Optimization
+163. Video Streaming
+164. Compression (Gzip / Brotli)
+165. HTTP Caching Headers
+166. TTLs
+167. Edge Computing
+168. Serverless Functions
+169. Cold Starts
+170. Containers vs VMs
+171. Kubernetes
+172. Docker Compose
+173. Autoscaling
+174. Cloud Regions and Availability Zones
+175. Vendor Lock-In
+176. Service Level Objectives (SLOs)
+177. SLAs
+178. Incident Response
+179. Postmortems
+180. On-Call
+181. Runbooks
+182. Status Pages
+183. Metrics
+184. Dashboards
+185. Log Retention
+186. Log Levels
+187. Correlation IDs
+188. PII in Logs
+189. Observability
+190. Canary Releases
+191. Rolling Deployments
+192. A/B Testing
+193. Environment Parity
+194. Configuration Management
+195. Merge Conflicts
+196. Rebasing
+197. Pull Requests
+198. Commit Messages
+199. .gitignore
+200. Git Tags and Releases
+201. Changelogs
+202. Code Linting
+203. Code Formatting
+204. Static Typing
+205. Type Safety
+206. Pre-Commit Hooks
+207. Code Coverage
+208. Mocking
+209. Test Fixtures
+210. Flaky Tests
+211. Regression Testing
+212. Test-Driven Development
+213. Smoke Tests
+214. Security Scanning (SAST / DAST)
+215. REST
+216. GraphQL
+217. WebSockets
+218. Server-Sent Events
+219. HTTP Methods
+220. HTTP Headers
+221. Request / Response Lifecycle
+222. JSON Schema
+223. OpenAPI
+224. API Design
+225. Backward Compatibility
+226. Breaking Changes
+227. Deprecation
+228. SDKs
+229. Third-Party API Limits
+230. Event-Driven Architecture
+231. Pub/Sub
+232. Dead Letter Queues
+233. At-Least-Once Delivery
+234. Distributed Locks
+235. Microservices vs Monoliths
+236. Service Discovery
+237. Graceful Degradation
+238. Fallbacks
+239. Backpressure
+240. Throttling
+241. Debouncing
+242. Unix Timestamps
+243. ISO 8601 Dates
+244. Floating Point Errors
+245. Money Handling (Never Use Floats)
+246. Internationalization (i18n)
+247. Localization (l10n)
+248. Event Loop
+249. Blocking vs Non-Blocking I/O
+250. Streaming Large Files
+251. Batch Processing
+252. Bundle Size
+253. Code Splitting
+254. Lazy Loading
+255. Server-Side Rendering
+256. Static Site Generation
+257. Client-Side State Management
+258. Core Web Vitals
+259. SEO
+260. Meta Tags and Open Graph
+261. Browser DevTools
+262. Cross-Browser Compatibility
+263. Optimistic UI Updates
+264. Loading States
+265. Empty States
+266. Form Validation UX
+267. Push Notifications
+268. Transactional Email
+269. Email Deliverability (SPF, DKIM, DMARC)
+270. SMS Delivery
+271. Payment Processing
+272. Payment Webhooks
+273. Subscriptions and Billing
+274. Refunds and Chargebacks
+275. PCI Compliance
+276. Sales Tax / VAT
+277. Analytics
+278. Event Tracking
+279. Product Metrics
+280. Cookie Consent
+281. Terms of Service and Privacy Policy
+282. Data Export and Deletion Requests
+283. Multi-Tenancy
+284. Admin Panels
+285. Spam and Abuse Prevention
+286. Content Moderation
+287. Mobile App Versioning and Forced Updates
+288. Offline Support
+289. Deep Linking
+290. Prompt Injection
+291. LLM API Costs
+292. Token Limits
+293. Embeddings
+294. Vector Databases
+295. RAG (Retrieval-Augmented Generation)
+296. Streaming LLM Responses
+297. Evaluating AI Output
+298. Reviewing AI-Generated Code
+299. Hallucinated Dependencies
+300. Reading Stack Traces
+301. Writing Good Bug Reports
+302. Refactoring
+303. Code Comments
+304. DRY vs Premature Abstraction
+305. Separation of Concerns
+306. YAGNI
+307. READMEs
+308. Architecture Decision Records
+309. Domain Names
+310. SSL Certificate Renewal
+311. Command Line Basics
+312. Package Managers
+
 ## Companion skills and design references
 
 These are other people's open-source skills. This standard keeps their key ideas in the "Design and craft" section and the "Motion and faux UI" section, so it works even when none of them is installed. Install one only when the task needs its depth or tooling.
@@ -1078,7 +1490,7 @@ DESIGN.md is a plain markdown design system file (colours, type, spacing, compon
 
 ### Stefano's saved material
 - "How to protect your vibe coded app from getting sued" guide (the six legal holes, with fix prompts), from the skool.com/raycfu community, saved as a text file with six sketch images (November 2026)
-- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction; IDOR and logout tests), @dr.erinjacques (Google Fonts and the GDPR, with a self-hosting prompt), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen), and a screenshot of "20 cool features Claude can add to your website in one afternoon" (creator not visible)
+- Instagram reels: @yatesvids (pre-launch checklist), @buildwithfrancis (pre-launch issues), @securedbycasco (security prompt reaction; IDOR and logout tests), @dr.erinjacques (Google Fonts and the GDPR, with a self-hosting prompt), @haydenschmitty (four design patterns), @danielwelsh_routiq (domain setup), @charles.unemployed (20 AI design slop indicators; removing AI slop from an OTP screen; 20 animation rules, from a screenshot), @paigethepm (staging environments and preview branches), @tinchosms (engineering topics), and screenshots of "20 cool features Claude can add to your website in one afternoon" and "20 (hidden) vibecoded website giveaways" (creators not visible)
 - UX audit prompt (132 items), saved as a text file
 - Website and app build standards (UK and EU), version 3 November 2026
 - Accessibility standard options, from a screenshot (September 2026)

@@ -33,8 +33,11 @@ Apply this to every website, app or coding task. Read only the references the ta
 | Launching, or "is it ready?" | [launch-checklist.md](references/launch-checklist.md), [legal-and-compliance.md](references/legal-and-compliance.md), and [app-stores.md](references/app-stores.md) for native apps |
 | "Could we get sued?" or a compliance audit of existing code | [compliance-audit-prompts.md](references/compliance-audit-prompts.md) (full audit first, read-only), then [legal-and-compliance.md](references/legal-and-compliance.md) |
 | Buying or setting up a domain or email sending | [launch-checklist.md](references/launch-checklist.md), domain setup |
+| Building a website, or checking whether one gives away that it was vibe-coded | [launch-checklist.md](references/launch-checklist.md), vibe-coded giveaways |
+| Setting up staging or preview deployments, or an app that keeps breaking in production | [launch-checklist.md](references/launch-checklist.md), staging and preview environments |
 | Animation, transitions or a product demo | [motion-and-faux-ui.md](references/motion-and-faux-ui.md) |
 | "What features could we add?" | [feature-ideas.md](references/feature-ideas.md) |
+| "What might we be missing?" or "what should I learn next?" | [engineering-topics.md](references/engineering-topics.md) |
 | Needs more depth or tooling | [companion-skills.md](references/companion-skills.md) |
 | Checking where a rule came from | [sources.md](references/sources.md) |
 

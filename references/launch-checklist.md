@@ -76,6 +76,48 @@ From the "How to protect your vibe coded app from getting sued" guide and the @d
 - [ ] Privacy policy and terms linked in the footer and at sign-up
 - [ ] User B can't open user A's record by URL, and a logged-out URL no longer loads (see [security.md](security.md))
 
+## Vibe-coded giveaways to avoid and fix [Saved]
+
+From a screenshot of a reel, "20 (hidden) vibecoded website giveaways" (creator not visible). Avoid these while building, and fix any you find on an existing site. The giveaway names are as shown on screen, and the fixes are [Practice]. ⚠️ Items 4, 13, 16 and 20 were cut off or unclear in the screenshot, so the wording in brackets or the fix is a best reading.
+
+| # | Giveaway | Fix |
+|---|---|---|
+| 1 | vercel.app url | Move to a real domain (see domain setup below) |
+| 2 | viewsource empty | Pre-render or server-render the main content so it is in the page's HTML |
+| 3 | no 404 page | Add a custom 404 page with a route home, and return a real 404 status |
+| 4 | vite + react browser [tab title] | Replace the template's default tab title and favicon ⚠️ |
+| 5 | same page titles | Give each page its own specific title |
+| 6 | no meta desc | Write a meta description for each page |
+| 7 | no og:image | Add an Open Graph image and check the social preview |
+| 8 | no structured data | Add JSON-LD where it fits, and make it match what the page shows |
+| 9 | multiple H1's | Use one H1 per page |
+| 10 | no H1's | Add one H1 that says what the page is |
+| 11 | no canonical tag | Add a canonical URL to each page, using the real domain |
+| 12 | no llms.txt | Optional: add one if you want a summary for AI tools. ⚠️ It is a proposed convention, not an agreed standard, and its benefit is unproven as far as I know |
+| 13 | AI blocked robots.t[xt] | Check `robots.txt` and any host or CDN bot settings, then allow or block AI crawlers on purpose ⚠️ |
+| 14 | no favicon | Add a custom favicon |
+| 15 | no sitemap.xml | Publish one and submit it in Google Search Console |
+| 16 | no lang attribut[e] | Set the page language, such as `<html lang="en-GB">` ⚠️ |
+| 17 | missing alt text | Add alt text to meaningful images, and empty alt text to decorative ones |
+| 18 | source maps | Don't expose production source maps publicly |
+| 19 | console errors | Fix them, and check the console on every main page |
+| 20 | massive JS bundl[e] | Split code by route and remove unused dependencies. The screenshot shows no target size ⚠️ |
+
+## Staging and preview environments [Saved]
+
+From the @paigethepm reel. If a vibe-coded app keeps breaking, ask whether you are "testing in prod": pushing code live to everyone and testing it there.
+
+- **Staging:** a production-like environment, separate from production, for testing new features and bug fixes.
+- **Setting it up:** this depends on your tools. You usually want a staging branch in GitHub and a staging environment at your hosting provider, such as Vercel, Bolt, Lovable or Cloudflare Workers. ⚠️ The reel gives no steps, so check each tool's current documentation.
+- **Quicker option when you're small:** preview branches. The reel names Vercel as doing this well: they show what a deployment will look like before it goes to production.
+
+Add when setting it up [Practice]:
+- [ ] Test new features and bug fixes on staging or a preview before production.
+- [ ] Give staging its own database and keys. A preview connected to the production database is not a safe test.
+- [ ] Never use real personal data for testing (see [security.md](security.md)).
+- [ ] Restrict access to staging and preview URLs and keep them out of search engines. ⚠️ Settings vary by host.
+- [ ] Treat preview URLs as test addresses only. The live site still needs a real domain.
+
 ## Domain setup [Saved]
 
 From the @danielwelsh_routiq reel ("You bought the domain. Now what?"). About 10 minutes in total.
@@ -92,5 +134,7 @@ Add for each sending subdomain [Practice]: SPF, DKIM and DMARC records from the 
 - [ ] Legal pages match what the site or app actually does.
 - [ ] A real browser check confirms no non-essential tracker fires before consent.
 - [ ] Automated accessibility scan and manual keyboard and screen reader test completed. Automated tools alone are not enough.
+- [ ] The latest changes were tested on staging or a preview before going live.
+- [ ] Every vibe-coded giveaway has been fixed, marked N/A or kept on purpose, with the reason noted.
 - [ ] All ⚠️ items relevant to this project have been verified.
 - [ ] Any remaining gaps have been reported plainly.
